@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * Implementation of hook_block_info().
+ */
+function bakken_glue_block_info() {
+  $blocks = array();
+  $blocks['bakken_links'] = array(
+    'info' => t('Bakken Social Links'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_block_configure().
+ */
+function bakken_glue_block_configure($delta) {
+  $helperName = '_' . __FUNCTION__ . '_' . $delta; 
+  if (function_exists($helperName)) {
+    return $helperName();
+  }
+}
+
+function _bakken_glue_block_configure_bakken_links() {
+  $form = array();
+  $linkNames = array(
+    'facebook',
+    'flickr',
+    'twitter',
+  );
+  foreach ($linkNames as $linkName) {
+    $form['bakken_glue_links_' . $linkName] = array(
+      '#type' => 'textfield',
+      '#title' => ucwords($linkName),
+      '#default_value' => variable_get('bakken_glue_links_' . $linkName),
+    );
+  }
+  return $form;
+}
+
+/**
+ * Implementation of hook_block_save().
+ */
+function bakken_glue_block_save($delta, $edit) {
+  $helperName = '_' . __FUNCTION__ . '_' . $delta; 
+  if (function_exists($helperName)) {
+    return $helperName($edit);
+  }
+}
+
+function _bakken_glue_block_save_bakken_links($edit) {
+  $linkNames = array(
+    'facebook',
+    'twitter',
+    'flickr',
+  );
+  foreach ($linkNames as $linkName) {
+      variable_set('bakken_glue_links_' . $linkName, $edit['bakken_glue_links_' . $linkName]);
+  }
+}
+
+/**
+ * Implementation of hook_block_view().
+ */
+function bakken_glue_block_view($delta) {
+  $helperName = '_' . __FUNCTION__ . '_' . $delta; 
+  if (function_exists($helperName)) {
+    return $helperName();
+  }
+}
+
+function _bakken_glue_block_view_bakken_links() {
+  $content = '';
+  $linkNames= array(
+    'facebook',
+    'flickr',
+    'twitter',
+  );
+  foreach ($linkNames as $linkName) {
+    $linkUrl = variable_get('bakken_glue_links_' . $linkName);
+    if (!empty($linkUrl)) {
+      $imageUrl = drupal_get_path('module', 'bakken_glue') . '/img/' . $linkName . '.png';
+      $content .= '<a class="bakken-links-' . $linkName . '" href="' . url($linkUrl, array('absolute' => TRUE)) . '" target="_blank"><img src="' . url($imageUrl, array('absolute' => TRUE)) . '" /></a>';
+    }
+  }
+  return array(
+    'subject' => NULL,
+    'content' => $content,
+  );
+}
+
+

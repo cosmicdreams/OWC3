@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Payments: Donations feature.
+ */
+
+include_once 'payments_donations.features.inc';

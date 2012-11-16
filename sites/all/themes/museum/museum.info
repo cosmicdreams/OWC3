@@ -1,0 +1,29 @@
+name = Bakken Museum 
+description = Created by Drupal Rocks! During Overnight Website Challenge 2012	
+core = 7.x
+engine = phptemplate
+
+; Stylesheets
+stylesheets[all][] = css/bakken.css
+stylesheets[all][] = css/menus.css
+
+; Javascript
+scripts[] = js/site.js
+
+; Attach files to the theme
+files[] = template.php
+
+regions[header] = Header
+regions[main_menu] = Main Menu
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[footer] = Footer
+
+settings[shortcut_module_link] = 0
+
+
+; Information added by drupal.org packaging script on 2012-02-01
+version = "7.12"
+project = "drupal"
+datestamp = "1328134560"
+

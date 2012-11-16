@@ -1,0 +1,146 @@
+/*---------------------------------------------------------------------------------*/
+/*	Main Menu
+/*---------------------------------------------------------------------------------*/
+
+/* Reset */
+
+ul li.leaf, ul li.collapsed, ul li.expanded {
+  list-style-image: none;
+  list-style-type: none;
+}
+
+ul.menu li {
+    margin: 0;
+}
+
+li.expanded, li.collapsed, li.leaf {
+    margin: 0;
+    padding: 0;
+}
+
+/* Primary */
+
+#main-menu {
+  background: url('../images/navbg.png') repeat-x;
+  height: 76px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+#main-menu > .region-main-menu {
+  width: 1000px;
+  margin: auto;
+}
+
+#main-menu > .region-main-menu > .menu {
+  padding: 7px 0 16px;
+}
+
+#main-menu > .region-main-menu > .menu > li {
+  float: left;
+  margin: 10px 0 10px 10px;
+	padding: 3px 10px 3px 0;
+  border-right: 1px solid #fff;
+}
+
+#main-menu > .region-main-menu > .menu > li > a {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 24px;
+  background: #3d5a6a;
+  border-radius: 10px;
+  color: #fff;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#main-menu > .region-main-menu > .menu > li.active-trail > a {
+  background: #6d8fa2 url(../images/bg-light-blue.jpg) repeat;
+}
+
+#main-menu > .region-main-menu > .menu > li.last {
+  border-right: 0;
+}
+
+#main-menu > .region-main-menu > .menu > li > a:hover {
+  background: #6d8fa2 url(../images/bg-light-blue.jpg) repeat;
+  text-decoration: none;
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded:hover > a {
+	background: #6d8fa2 url(../images/bg-light-blue.jpg) repeat;
+  border-radius: 10px 10px 0 0;
+  color: #000;
+  text-decoration: none;
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded:hover > a:hover {
+	color: #fff;
+  text-decoration: none;
+}
+
+#main-menu > .region-main-menu > .menu > li > .menu {
+  padding: 5px 0 10px;
+  background: #6d8fa2 url(../images/bg-light-blue.jpg) repeat;
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded > .menu {
+  display: none;
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded:hover > .menu {
+  display: block;
+  position: absolute;
+  z-index: 99999;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded > .menu > li {
+  margin: 0;
+  line-height: 30px;
+  padding: 5px 10px;
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded > .menu > li > a {
+	display: block;
+  line-height: 16px;
+  padding: 7px 17px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+#main-menu > .region-main-menu > .menu > li.expanded > .menu > li > a:hover {
+	background: #3d5a6a;
+}
+
+#main-menu > .region-main-menu > .menu > li > .menu > li {
+  display: block !important;
+}
+
+/*---------------------------------------------------------------------------------*/
+/*	Main Menu
+/*---------------------------------------------------------------------------------*/
+
+.breadcrumb a {
+	display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  background: #3d5a6a;
+  border-radius: 5px;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+.breadcrumb a.active-trail {
+	background: #6d8fa2 url(../images/bg-light-blue.jpg) repeat; 
+}
