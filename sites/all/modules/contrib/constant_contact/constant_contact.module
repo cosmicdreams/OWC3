@@ -15,7 +15,7 @@ function constant_contact_help($path, $arg)
 
 	case 'admin/help#constant_contact':
 	return '<p>'. t('
-	  <p>This module works with the new <a target="_blank" href="@api">Constant Contact REST API</a></p>
+	  <p>This module works with the new <a target="_blank" href="@api">Constant Contact REST API</a>.</p>
 	  <p><a target="_blank" href="@cc">Signup for a free 60-day trial</a> if you do not already have an account.</p>
 	  <p>To setup a custom signup form please follow the instructions below:</p>
 	  <ol>
@@ -125,115 +125,112 @@ function constant_contact_menu()
         'weight' => 0,
     );
 
-    if(trim($username) != '' AND trim($password) != ''):
+    // display the settings page
+    $items['admin/config/services/constant_contact/settings'] = array(
+        'title' => 'Change settings',
+        'description' => 'Change your constant contact settings',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('constant_contact_settings'),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_LOCAL_TASK,
+        'file' =>  'admin.system.inc',
+        'weight' => 1,
+    );
 
-        // display the settings page
-        $items['admin/config/services/constant_contact/settings'] = array(
-            'title' => 'Change settings',
-            'description' => 'Change your constant contact settings',
-            'page callback' => 'drupal_get_form',
-            'page arguments' => array('constant_contact_settings'),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_LOCAL_TASK,
-            'file' =>  'admin.system.inc',
-            'weight' => 1,
-        );
+    // display the activities page
+    $items['admin/config/services/constant_contact/activities'] = array(
+        'title' => 'View Activities',
+        'description' => 'View Your Constant Contact Activities',
+        'page callback' => 'constant_contact_view_activities',
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_LOCAL_TASK,
+        'file' =>  'admin.activities.inc',
+        'weight' => 5,
+    );
 
-        // display the activities page
-        $items['admin/config/services/constant_contact/activities'] = array(
-            'title' => 'View Activities',
-            'description' => 'View Your Constant Contact Activities',
-            'page callback' => 'constant_contact_view_activities',
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_LOCAL_TASK,
-            'file' =>  'admin.activities.inc',
-            'weight' => 5,
-        );
+    // display the import page
+    $items['admin/config/services/constant_contact/import'] = array(
+        'title' => 'Import',
+        'description' => 'Import subscribers to your constant contact mailing lists',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('constant_contact_import'),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_LOCAL_TASK,
+        'file' =>  'admin.import.inc',
+        'weight' => 10,
+    );
 
-        // display the import page
-        $items['admin/config/services/constant_contact/import'] = array(
-            'title' => 'Import',
-            'description' => 'Import subscribers to your constant contact mailing lists',
-            'page callback' => 'drupal_get_form',
-            'page arguments' => array('constant_contact_import'),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_LOCAL_TASK,
-            'file' =>  'admin.import.inc',
-            'weight' => 10,
-        );
+    // display the export page
+    $items['admin/config/services/constant_contact/export'] = array(
+        'title' => 'Export',
+        'description' => 'Export subscribers from your constant contact mailing lists',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('constant_contact_export'),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_LOCAL_TASK,
+        'file' =>  'admin.export.inc',
+        'weight' => 15,
+    );
 
-        // display the export page
-        $items['admin/config/services/constant_contact/export'] = array(
-            'title' => 'Export',
-            'description' => 'Export subscribers from your constant contact mailing lists',
-            'page callback' => 'drupal_get_form',
-            'page arguments' => array('constant_contact_export'),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_LOCAL_TASK,
-            'file' =>  'admin.export.inc',
-            'weight' => 15,
-        );
+    $items['admin/config/services/constant_contact/activities/%'] = array(
+        'title' => 'View Activity',
+        'description' => 'View Information About This Activity',
+        'page callback' => 'constant_contact_view_activity',
+        'page arguments' => array(5),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_CALLBACK,
+        'file' =>  'admin.activities.inc',
+    );
 
-        $items['admin/config/services/constant_contact/activities/%'] = array(
-            'title' => 'View Activity',
-            'description' => 'View Information About This Activity',
-            'page callback' => 'constant_contact_view_activity',
-            'page arguments' => array(5),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_CALLBACK,
-            'file' =>  'admin.activities.inc',
-        );
+    $items['admin/config/services/constant_contact/activities/download/%'] = array(
+        'title' => 'Download File',
+        'description' => 'Download the Activity File',
+        'page callback' => 'constant_contact_download_activity',
+        'page arguments' => array(6),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_CALLBACK,
+        'file' =>  'admin.activities.inc',
+    );
 
-        $items['admin/config/services/constant_contact/activities/download/%'] = array(
-            'title' => 'Download File',
-            'description' => 'Download the Activity File',
-            'page callback' => 'constant_contact_download_activity',
-            'page arguments' => array(6),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_CALLBACK,
-            'file' =>  'admin.activities.inc',
-        );
+    // display the contact lists page
+    $items['admin/config/services/constant_contact/lists'] = array(
+        'title' => 'Contact Lists',
+        'description' => 'Manage your contact lists',
+        'page callback' => 'constant_contact_manage_lists',
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_LOCAL_TASK,
+        'file' =>  'admin.lists.inc',
+        'weight' => 20,
+    );
 
-        // display the contact lists page
-        $items['admin/config/services/constant_contact/lists'] = array(
-            'title' => 'Contact Lists',
-            'description' => 'Manage your contact lists',
-            'page callback' => 'constant_contact_manage_lists',
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_LOCAL_TASK,
-            'file' =>  'admin.lists.inc',
-            'weight' => 20,
-        );
+    $items['admin/config/services/constant_contact/lists/add'] = array(
+        'title' => 'Add List',
+        'description' => 'Add a new contact list to constant contact',
+        'page callback' => 'constant_contact_add_list',
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_CALLBACK,
+        'file' =>  'admin.lists.inc',
+    );
 
-        $items['admin/config/services/constant_contact/lists/add'] = array(
-            'title' => 'Add List',
-            'description' => 'Add a new contact list to constant contact',
-            'page callback' => 'constant_contact_add_list',
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_CALLBACK,
-            'file' =>  'admin.lists.inc',
-        );
+    $items['admin/config/services/constant_contact/lists/edit/%'] = array(
+        'title' => 'Edit List',
+        'description' => 'Edit a contact list',
+        'page callback' => 'constant_contact_edit_list',
+        'page arguments' => array(6),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_CALLBACK,
+        'file' =>  'admin.lists.inc',
+    );
 
-        $items['admin/config/services/constant_contact/lists/edit/%'] = array(
-            'title' => 'Edit List',
-            'description' => 'Edit a contact list',
-            'page callback' => 'constant_contact_edit_list',
-            'page arguments' => array(6),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_CALLBACK,
-            'file' =>  'admin.lists.inc',
-        );
-
-        $items['admin/config/services/constant_contact/lists/delete/%'] = array(
-            'title' => 'Delete List',
-            'description' => 'Delete a contact list',
-            'page callback' => 'constant_contact_delete_list',
-            'page arguments' => array(6),
-            'access arguments' => array('administer constant_contact'),
-            'type' => MENU_CALLBACK,
-            'file' =>  'admin.lists.inc',
-        );
-    endif;
+    $items['admin/config/services/constant_contact/lists/delete/%'] = array(
+        'title' => 'Delete List',
+        'description' => 'Delete a contact list',
+        'page callback' => 'constant_contact_delete_list',
+        'page arguments' => array(6),
+        'access arguments' => array('administer constant_contact'),
+        'type' => MENU_CALLBACK,
+        'file' =>  'admin.lists.inc',
+    );
 
 	return $items;
 }
@@ -580,17 +577,13 @@ function constant_contact_user_insert(&$edit, $account, $category)
         $fieldname = str_replace(' ','', $field);
         if(isset($field_mappings[$fieldname]) && isset($_POST[$field_mappings[$fieldname]]['und'][0]['value'])):
 
-
+            $extra_fields[$fieldname] = $_POST[$field_mappings[$fieldname]]['und'][0]['value'];
             // CCK fields / multi-value fields - strip down array to first value.
             // structure is probably $field[$delta][$value], but try to work for any array
             if (is_array($extra_fields[$fieldname])) {
-              while (is_array($extra_fields[$fieldname])) {
-                $extra_fields[$fieldname] = array_shift($extra_fields[$fieldname]);
-              }
-            }
-            else
-            {
-                $extra_fields[$fieldname] = $_POST[$field_mappings[$fieldname]]['und'][0]['value'];
+                while (is_array($extra_fields[$fieldname])) {
+                    $extra_fields[$fieldname] = array_shift($extra_fields[$fieldname]);
+                }
             }
         endif;
     endforeach;
@@ -699,16 +692,14 @@ function constant_contact_user_update(&$edit, $account, $category)
         $actual_fieldname = $field_mappings[$fieldname];
         if(isset($edit[$actual_fieldname])):
 
+
+            $extra_fields[$fieldname] = $edit[$actual_fieldname];
             // CCK fields / multi-value fields - strip down array to first value.
             // structure is probably $field[$delta][$value], but try to work for any array
             if (is_array($extra_fields[$fieldname])) {
-              while (is_array($extra_fields[$fieldname])) {
-                $extra_fields[$fieldname] = array_shift($extra_fields[$fieldname]);
-              }
-            }
-            else
-            {
-                $extra_fields[$fieldname] = $edit[$actual_fieldname];
+                while (is_array($extra_fields[$fieldname])) {
+                    $extra_fields[$fieldname] = array_shift($extra_fields[$fieldname]);
+                }
             }
         endif;
     endif;
@@ -863,9 +854,27 @@ function constant_contact_block_view($delta = '')
     $block = array();
 
     $block['subject'] = t("Signup Form $delta");
-    $block['content'] = drupal_get_form('constant_contact_signup_form', $delta);
+    $block['content'] = drupal_get_form("constant_contact_signup_form_$delta", $delta);
 
     return $block;
+}
+
+
+/**
+ * Registers callbacks for multiple form blocks so they all point to the same shared function  for building and submitting
+ * Implements hook_forms()
+ */
+function constant_contact_forms($form_id, $args)
+{
+    $forms = array();
+    $total_blocks_available = variable_get('cc_total_blocks_available', CC_BLOCK_COUNT);
+
+    for($i=1; $i <= $total_blocks_available; ++$i):
+        $forms["constant_contact_signup_form_$i"]['callback'] = 'constant_contact_signup_form';
+        $forms["constant_contact_signup_form_$i"]['callback arguments'] = array($i);
+    endfor;
+
+    return $forms;
 }
 
 
@@ -994,22 +1003,21 @@ function constant_contact_block_save($delta = '', $edit = array())
 }
 
 
+
+
 /**
  * Shows the custom signup form, added using a block
  */
 function constant_contact_signup_form($form, &$form_state, $delta)
 {
 	$cc = constant_contact_create_object();
-    
-	$form = array();
-	$show_selection = variable_get('cc_block_show_list_selection_'.$delta,CC_BLOCK_SHOW_LIST_SELECTION);
-	$selection_format = variable_get('cc_block_list_selection_format_'.$delta,CC_LIST_SELECTION_FORMAT);
-	$show_format_choice = variable_get('cc_show_format_choice_'.$delta,CC_SHOW_FORMAT_CHOICE);
-	$default_subscribe_format = variable_get('cc_subscribe_format_'.$delta,CC_SUBSCRIBE_FORMAT);
+
+	$show_selection = variable_get('cc_block_show_list_selection_'.$delta, CC_BLOCK_SHOW_LIST_SELECTION);
+	$selection_format = variable_get('cc_block_list_selection_format_'.$delta, CC_LIST_SELECTION_FORMAT);
+	$show_format_choice = variable_get('cc_show_format_choice_'.$delta, CC_SHOW_FORMAT_CHOICE);
+	$default_subscribe_format = variable_get('cc_subscribe_format_'.$delta, CC_SUBSCRIBE_FORMAT);
 	$form_block_fields = variable_get('cc_form_block_fields_'.$delta, array());
 	$email_field_position = variable_get('cc_email_field_position_'.$delta, 1);
-
-
 
 	if(is_array($form_block_fields)):
 		$form_block_fields['_email_'.$delta] = 1; /* dummy entry so we get enough for the email field */
@@ -1083,8 +1091,9 @@ function constant_contact_signup_form($form, &$form_state, $delta)
 		);
 	endif;
 
+    $form['#id'] = "cc_signup_form_$delta";
     $form['delta'] = array('#type' => 'hidden', '#value' => $delta);
-	$form['submit'] = array('#type' => 'submit', '#value' => t('Signup'));
+	$form['submit'] = array('#type' => 'submit', '#name' => "submit_$delta", '#value' => t('Signup'));
 	return $form;
 }
 
@@ -1109,7 +1118,7 @@ function constant_contact_signup_form_submit($form, &$form_state)
 
 	$fields = array();
 
-	if($show_selection):
+	if($show_selection AND isset($form_state['values']['cc_newsletter_lists_'.$delta])):
         // subscribe user to selected lists
 		$lists = $form_state['values']['cc_newsletter_lists_'.$delta];
 
@@ -1124,7 +1133,7 @@ function constant_contact_signup_form_submit($form, &$form_state)
 			$lists = $newlists;
 		endif;
 
-	elseif(!$show_selection):
+	elseif(!$show_selection OR !isset($form_state['values']['cc_newsletter_lists_'.$delta])):
         // subscribe user to all lists the admin have selected
 		$lists = constant_contact_get_lists($cc);
 
@@ -1136,8 +1145,6 @@ function constant_contact_signup_form_submit($form, &$form_state)
                 endif;
             endforeach;
             $lists = $newlists;
-        else:
-            // admin has not selected any lists so they get added to them all
         endif;
 	else:
 		$lists = array();
@@ -1231,8 +1238,8 @@ function constant_contact_cron()
 	endif;
 
 	// if we have other pages grab them too
-	if(!empty($cc->contact_meta_data->next_page)):
-		while($cc->contact_meta_data->next_page != ''):
+	if(isset($cc->contact_meta_data->next_page) AND !is_null($cc->contact_meta_data->next_page)):
+		while(!is_null($cc->contact_meta_data->next_page)):
 			$action = $cc->contact_meta_data->next_page;
 			$users = $cc->get_contacts($action);
 
@@ -1255,8 +1262,8 @@ function constant_contact_cron()
 	endif;
 
 	// if we have other pages grab them too
-	if(!empty($cc->contact_meta_data->next_page)):
-		while($cc->contact_meta_data->next_page != ''):
+	if(isset($cc->contact_meta_data->next_page) AND !is_null($cc->contact_meta_data->next_page)):
+		while(!is_null($cc->contact_meta_data->next_page)):
 			$action = $cc->contact_meta_data->next_page;
 			$users = $cc->get_contacts($action);
 

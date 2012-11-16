@@ -330,10 +330,10 @@ class cc {
 		$lists = $this->get_lists($action, $exclude);
 
 		if(count($lists) > 0):
-			if(isset($this->list_meta_data->next_page)):
+			if(isset($this->list_meta_data->next_page) AND !is_null($this->list_meta_data->next_page)):
 				// grab all the other pages if they exist
-				while($this->list_meta_data->next_page != ''):
-				$lists = array_merge($lists, $this->get_lists($this->list_meta_data->next_page, 0));
+				while(!is_null($this->list_meta_data->next_page)):
+				    $lists = array_merge($lists, $this->get_lists($this->list_meta_data->next_page, 0));
 				endwhile;
 			endif;
 
@@ -390,6 +390,10 @@ class cc {
 			$this->list_meta_data->next_page = $this->get_id_from_link($xml['feed']['link']['2_attr']['href']);
 			$this->list_meta_data->current_page = $this->get_id_from_link($xml['feed']['link']['3_attr']['href']);
 			$this->list_meta_data->first_page = $this->get_id_from_link($xml['feed']['link']['4_attr']['href']);
+	    else:
+			$this->list_meta_data->next_page = NULL;
+			$this->list_meta_data->current_page = NULL;
+			$this->list_meta_data->first_page = NULL;
 		endif;
 
 
@@ -634,6 +638,10 @@ class cc {
 			$this->member_meta_data->next_page = $this->get_id_from_link($xml['feed']['link']['2_attr']['href']);
 			$this->member_meta_data->current_page = $this->get_id_from_link($xml['feed']['link']['3_attr']['href']);
 			$this->member_meta_data->first_page = $this->get_id_from_link($xml['feed']['link']['4_attr']['href']);
+	    else:
+			$this->member_meta_data->next_page = NULL;
+			$this->member_meta_data->current_page = NULL;
+			$this->member_meta_data->first_page = NULL;
 		endif;
 
 		if(is_array($_members)):
@@ -814,14 +822,18 @@ $xml_data .= '
 		$_contacts = (isset($xml['feed']['entry'])) ? $xml['feed']['entry'] : false;
 
 
-		if(isset($xml['feed']['link']['2_attr']['rel']) && $xml['feed']['link']['2_attr']['rel'] == 'first'):
+		if(isset($xml['feed']['link']['2_attr']['rel'], $xml['feed']['link']['3_attr']['href']) && $xml['feed']['link']['2_attr']['rel'] == 'first'):
 			$this->contact_meta_data->first_page = $this->get_id_from_link($xml['feed']['link']['2_attr']['href']);
 			$this->contact_meta_data->current_page = $this->get_id_from_link($xml['feed']['link']['3_attr']['href']);
 			$this->contact_meta_data->next_page = '';
-		elseif(isset($xml['feed']['link']['2_attr']['rel']) && $xml['feed']['link']['2_attr']['rel'] == 'next'):
+		elseif(isset($xml['feed']['link']['2_attr']['rel'], $xml['feed']['link']['3_attr']['href'], $xml['feed']['link']['4_attr']['href']) && $xml['feed']['link']['2_attr']['rel'] == 'next'):
 			$this->contact_meta_data->next_page = $this->get_id_from_link($xml['feed']['link']['2_attr']['href']);
 			$this->contact_meta_data->current_page = $this->get_id_from_link($xml['feed']['link']['3_attr']['href']);
 			$this->contact_meta_data->first_page = $this->get_id_from_link($xml['feed']['link']['4_attr']['href']);
+	    else:
+			$this->contact_meta_data->next_page = NULL;
+			$this->contact_meta_data->current_page = NULL;
+			$this->contact_meta_data->first_page = NULL;
 		endif;
 
 
@@ -1881,6 +1893,8 @@ id="'.$this->get_http_api_url().'campaigns/1100546096289">
         $this->http_response_info = curl_getinfo($ch);
         $this->http_response_error = curl_error($ch);
         $this->http_response_code = $this->http_response_info['http_code'];
+
+        curl_close($ch);
     }
 
 

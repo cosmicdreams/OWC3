@@ -30,7 +30,7 @@ function commerce_tax_rate_features_export_options() {
   $tax_rates = commerce_tax_rates();
   if (!empty($tax_rates)) {
     foreach($tax_rates as $rate) {
-      $feature_types[$rate['name']] = $rate['display_title'];
+      $feature_types[$rate['name']] = $rate['title'];
     }
   }
   return $feature_types;
@@ -78,10 +78,13 @@ function commerce_tax_rate_features_revert($module = NULL) {
     return FALSE;
   }
 
-  // Re-Cache
+  // Reset the caches.
   commerce_tax_rates_reset();
+  entity_defaults_rebuild();
+  rules_clear_cache(TRUE);
+  // Schedule a menu rebuild.
+  variable_set('menu_rebuild_needed', TRUE);
 
-  menu_rebuild();
   return TRUE;
 }
 

@@ -6,24 +6,17 @@
 function commerce_line_item_type_features_export($data, &$export, $module_name = '') {
   $pipe = array();
 
-  $map = features_get_default_map('commerce_line_item_type');
-  // Add commerce and features as dependencies,
+  // Add dependencies.
   $export['dependencies']['features'] = 'features';
   $export['dependencies']['commerce_features'] = 'commerce_features';
-  $export['dependencies']['commerce_line_item_ui'] = 'commerce_line_item_ui';
-
-  $info = commerce_line_item_types();
+  $export['dependencies']['commerce_custom_product'] = 'commerce_custom_product';
 
   foreach ($data as $type) {
-    // Add module dependencies
-    if (isset($info[$type]['module'])) {
-      $export['dependencies'][$info[$type]['module']] = $info[$type]['module'];
-    }
     $export['features']['commerce_line_item_type'][$type] = $type;
 
     // Fetch fields of the profile type and add them as dependency
     $fields = field_info_instances('commerce_line_item', $type);
-    foreach ($fields as $name => $field) {
+    foreach ($fields as $field) {
       $pipe['field'][] = "commerce_line_item-{$field['bundle']}-{$field['field_name']}";
     }
   }
@@ -35,10 +28,10 @@ function commerce_line_item_type_features_export($data, &$export, $module_name =
  */
 function commerce_line_item_type_features_export_options() {
   $feature_types = array();
-  $line_item_types = commerce_line_item_types();
+  $line_item_types = commerce_custom_product_commerce_line_item_type_info();
   if (!empty($line_item_types)) {
-    foreach ($line_item_types as $type) {
-      $feature_types[$type['type']] = $type['name'];
+    foreach ($line_item_types as $type => $line_item_type) {
+      $feature_types[$type] = $line_item_type['name'];
     }
   }
   return $feature_types;
@@ -47,34 +40,19 @@ function commerce_line_item_type_features_export_options() {
 /**
  * Implements hook_features_export_render().
  */
-function commerce_line_item_type_features_export_render($module, $data) {
-  $exportable_data = array();
-  $info = commerce_line_item_types();
-
-  // Filter out all line item types not coming from UI.
+function commerce_line_item_type_features_export_render($module, $data, $export = NULL) {
+  $line_item_types = commerce_custom_product_commerce_line_item_type_info();
+  $output = array();
+  $output[] = '  $items = array(';
   foreach ($data as $type) {
-   if (isset($info[$type]) && $line_item_type = $info[$type]) {
-     if (isset($line_item_type['module']) && $line_item_type['module'] == 'commerce_custom_line_items') {
-      $exportable_data[$type] = $type;
-     }
-   }
-  }
-
-  if (!empty($exportable_data)) {
-    $output = array();
-    $output[] = '  $items = array(';
-    foreach ($exportable_data as $type) {
-      if (isset($info[$type]) && $line_item_type = $info[$type]) {
-        $output[] = "    '{$type}' => " . features_var_export($line_item_type, '    ') . ",";
-      }
+    if (isset($line_item_types[$type]) && $line_item_type = $line_item_types[$type]) {
+      $output[] = "    '{$type}' => " . features_var_export($line_item_type, '    ') . ",";
     }
-    $output[] = '  );';
-    $output[] = '  return $items;';
-    $output = implode("\n", $output);
-    return array('commerce_line_item_default_types' => $output);
   }
-
-  return array();
+  $output[] = '  );';
+  $output[] = '  return $items;';
+  $output = implode("\n", $output);
+  return array('commerce_line_item_default_types' => $output);
 }
 
 /**
@@ -84,14 +62,8 @@ function commerce_line_item_type_features_revert($module) {
   // Get default line item types
   if (module_hook($module, 'commerce_line_item_default_types')) {
     $default_types = module_invoke($module, 'commerce_line_item_default_types');
-    $existing_types = commerce_line_item_types();
     foreach ($default_types as $type) {
-      // Add / or update
-      if (!isset($existing_types[$type['type']])) {
-        $type['is_new'] = TRUE;
-      }
-      // Use UI function because it provides already the logic we need
-      module_invoke('commerce_custom_line_items', 'commerce_line_item_type_save', $type);
+      commerce_custom_product_line_item_type_save($type, TRUE, TRUE);
     }
   }
   else {
@@ -99,10 +71,11 @@ function commerce_line_item_type_features_revert($module) {
     return FALSE;
   }
 
-  // Re-Cache
-  drupal_static_reset('commerce_line_item_types');
+  // Reset the static cache.
+  commerce_line_item_types_reset();
+  // Schedule a menu rebuild.
+  variable_set('menu_rebuild_needed', TRUE);
 
-  menu_rebuild();
   return TRUE;
 }
 

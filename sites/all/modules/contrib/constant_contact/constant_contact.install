@@ -125,6 +125,11 @@ function constant_contact_uninstall()
 	variable_del('cc_email_field_position');
     variable_del('cc_lists_cache_expire');
     variable_del('cc_show_new_lists');
+
+    /*
+    variable_del('cc_username');
+    variable_del('cc_password');
+    //*/
 }
 
 /**
@@ -141,19 +146,4 @@ function constant_contact_disable()
 function constant_contact_enable()
 {
 	drupal_set_message(t('The Constant Contact module has been enabled, please visit the settings page to configure your account details.'));
-}
-
-/**
- * Upgrade for drupal 6.x-2.1
- */
-function constant_contact_update_6201()
-{
-    // convert old username and password for RC2 or below
-    $username = variable_get('cc-username', '');
-    $password = variable_get('cc-password', '');
-
-    if($username && $password):
-        variable_set('cc_username', $username);
-        variable_set('cc_password', $password);
-    endif;
 }

@@ -1,6 +1,11 @@
 Constant Contact Drupal Module
 ------------------------------
 
+7.x-3.3 CHANGES
+---------------
+Fixed #1467850 #1018054 #1153178 #1511164
+
+
 7.x-3.1-beta4 CHANGES
 ---------------
 Fixed Cache issue when you initially setup the module, it now auto-deletes the cached menu so you don't have to do it manually.

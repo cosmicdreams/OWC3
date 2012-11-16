@@ -274,6 +274,5 @@ function constant_contact_setup()
  */
 function constant_contact_setup_submit($form, &$form_state)
 {
-    menu_rebuild();
     drupal_set_message(t('Constant Contact module settings have been saved'));
 }

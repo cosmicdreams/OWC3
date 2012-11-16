@@ -165,9 +165,11 @@ function smartqueue_nodequeue_alter(&$data, $type) {
   switch ($type) {
     case 'load_queues':
       $queues = array_keys($data);
-      $result = db_query("SELECT name, use_parents FROM {smartqueue} WHERE name IN (:queues)", array(':queues' => $queues));
-      foreach ($result as $queue) {
-        $data[$queue->name]->use_parents = $queue->use_parents;
+      if (count($queues)) {
+        $result = db_query("SELECT name, use_parents FROM {smartqueue} WHERE name IN (:queues)", array(':queues' => $queues));
+        foreach ($result as $queue) {
+          $data[$queue->name]->use_parents = $queue->use_parents;
+        }
       }
       break;
   }
