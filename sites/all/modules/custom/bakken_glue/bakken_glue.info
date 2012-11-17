@@ -1,4 +1,0 @@
-name = Bakken Glue
-description = One off solutions for the Bakken Museum site.
-package = "Bakken"
-core = 7.x
