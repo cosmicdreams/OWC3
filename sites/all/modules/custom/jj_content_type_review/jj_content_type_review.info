@@ -1,7 +1,7 @@
 name = jj_content_type_review
 description = Defines the Review content type.
 core = 7.x
-package = JJ's List
+package = JJs List
 version = 7.x-1.0
 project = jj_content_type_review
 dependencies[] = ctools
