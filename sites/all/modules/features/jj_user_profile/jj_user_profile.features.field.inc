@@ -68,7 +68,7 @@ function jj_user_profile_field_default_fields() {
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '8',
+        'weight' => '6',
       ),
     ),
   );
@@ -77,7 +77,7 @@ function jj_user_profile_field_default_fields() {
   $fields['user-user-field_user_description'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_user_description',
@@ -124,7 +124,7 @@ function jj_user_profile_field_default_fields() {
       'entity_type' => 'user',
       'field_name' => 'field_user_description',
       'label' => 'Describe Yourself',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => 1,
       ),
@@ -133,7 +133,7 @@ function jj_user_profile_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '11',
+        'weight' => '2',
       ),
     ),
   );
@@ -184,7 +184,7 @@ function jj_user_profile_field_default_fields() {
       'entity_type' => 'user',
       'field_name' => 'field_user_firstname',
       'label' => 'Firstname',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => 1,
@@ -196,7 +196,7 @@ function jj_user_profile_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => 0,
       ),
     ),
   );
@@ -247,7 +247,7 @@ function jj_user_profile_field_default_fields() {
       'entity_type' => 'user',
       'field_name' => 'field_user_lastname',
       'label' => 'Lastname',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => 1,
@@ -259,7 +259,7 @@ function jj_user_profile_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '1',
       ),
     ),
   );
@@ -333,7 +333,7 @@ function jj_user_profile_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '7',
+        'weight' => '4',
       ),
     ),
   );
