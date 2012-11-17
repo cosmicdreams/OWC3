@@ -1,4 +1,4 @@
-name = JJSList Business Articles
+name = JJ: Content Type : Articles
 description = Allows articles to be contected to a business.
 core = 7.x
 package = JJs List

@@ -1,4 +1,4 @@
-name = jj_content_type_review
+name = JJ : Content Type : Review
 description = Defines the Review content type.
 core = 7.x
 package = JJs List
