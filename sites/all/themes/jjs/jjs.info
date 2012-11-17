@@ -1,4 +1,4 @@
-name = JJ
+name = JJs
 description = Theme for JJ's list
 core = 7.x
 engine = phptemplate
@@ -7,8 +7,7 @@ base theme = alpha
 
 ; IMPORTANT: DELETE THESE TWO LINES IN YOUR SUBTHEME
 
-hidden = TRUE
-starterkit = TRUE
+
 
 ; REQUIRED CORE REGIONS
 
