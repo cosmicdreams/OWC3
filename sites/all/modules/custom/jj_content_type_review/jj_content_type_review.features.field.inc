@@ -84,72 +84,6 @@ function jj_content_type_review_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-review-field_review_accessible'.
-  $fields['node-review-field_review_accessible'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_accessible',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'accessible',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 5,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_accessible',
-      'label' => 'Physically Accessible',
-      'required' => FALSE,
-      'settings' => array(
-        'stars' => 5,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '4',
-      ),
-    ),
-  );
-
   // Exported field: 'node-review-field_review_business'.
   $fields['node-review-field_review_business'] = array(
     'field_config' => array(
@@ -205,10 +139,13 @@ function jj_content_type_review_field_default_fields() {
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '2',
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -233,7 +170,7 @@ function jj_content_type_review_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'entityreference_autocomplete',
-        'weight' => '3',
+        'weight' => '5',
       ),
     ),
   );
@@ -276,7 +213,7 @@ function jj_content_type_review_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 6,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -305,23 +242,42 @@ function jj_content_type_review_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-review-field_review_choices'.
-  $fields['node-review-field_review_choices'] = array(
+  // Exported field: 'node-review-field_review_criteria'.
+  $fields['node-review-field_review_criteria'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_review_choices',
-      'foreign keys' => array(),
-      'indexes' => array(),
+      'field_name' => 'field_review_criteria',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
       'locked' => '0',
-      'module' => 'fivestar',
+      'module' => 'taxonomy',
       'settings' => array(
-        'axis' => 'choices',
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'review_criteria',
+            'parent' => '0',
+          ),
+        ),
       ),
       'translatable' => '0',
-      'type' => 'fivestar',
+      'type' => 'taxonomy_term_reference',
     ),
     'field_instance' => array(
       'bundle' => 'review',
@@ -331,17 +287,10 @@ function jj_content_type_review_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 8,
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -351,43 +300,39 @@ function jj_content_type_review_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_review_choices',
-      'label' => 'Gave Choices',
+      'field_name' => 'field_review_criteria',
+      'label' => 'Criteria',
       'required' => 0,
       'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '7',
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '4',
       ),
     ),
   );
 
-  // Exported field: 'node-review-field_review_directly'.
-  $fields['node-review-field_review_directly'] = array(
+  // Exported field: 'node-review-field_review_rating'.
+  $fields['node-review-field_review_rating'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_review_directly',
+      'field_name' => 'field_review_rating',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
       'locked' => '0',
       'module' => 'fivestar',
       'settings' => array(
-        'axis' => 'directly',
+        'axis' => 'vote',
       ),
       'translatable' => '0',
       'type' => 'fivestar',
@@ -410,7 +355,7 @@ function jj_content_type_review_field_default_fields() {
             ),
           ),
           'type' => 'fivestar_formatter_default',
-          'weight' => 7,
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -420,13 +365,13 @@ function jj_content_type_review_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_review_directly',
-      'label' => 'Talked Directly',
+      'field_name' => 'field_review_rating',
+      'label' => 'Rating',
       'required' => 0,
       'settings' => array(
         'allow_clear' => 0,
         'stars' => '5',
-        'target' => 'none',
+        'target' => 'jj_reviews_business',
         'user_register_form' => FALSE,
       ),
       'widget' => array(
@@ -443,572 +388,14 @@ function jj_content_type_review_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-review-field_review_employees'.
-  $fields['node-review-field_review_employees'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_employees',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'employees',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 13,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_employees',
-      'label' => 'Has Employees with Disabilities',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '12',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_flexible'.
-  $fields['node-review-field_review_flexible'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_flexible',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'flexible',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 14,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_flexible',
-      'label' => 'Flexible Service',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '13',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_friendly'.
-  $fields['node-review-field_review_friendly'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_friendly',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'friendly',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 9,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_friendly',
-      'label' => 'Friendly',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_helpful'.
-  $fields['node-review-field_review_helpful'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_helpful',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'helpful',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 12,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_helpful',
-      'label' => 'Helpful',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '11',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_parking'.
-  $fields['node-review-field_review_parking'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_parking',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'parking',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 15,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_parking',
-      'label' => 'Accessible Parking',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '14',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_respectful'.
-  $fields['node-review-field_review_respectful'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_respectful',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'respectful',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 11,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_respectful',
-      'label' => 'Respectful',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '10',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_time'.
-  $fields['node-review-field_review_time'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_time',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'time',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 10,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_time',
-      'label' => 'Gave Extra Time',
-      'required' => 0,
-      'settings' => array(
-        'allow_clear' => 0,
-        'stars' => '5',
-        'target' => 'none',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '9',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-review-field_review_welcoming'.
-  $fields['node-review-field_review_welcoming'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_review_welcoming',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'fivestar',
-      'settings' => array(
-        'axis' => 'welcoming',
-      ),
-      'translatable' => '0',
-      'type' => 'fivestar',
-    ),
-    'field_instance' => array(
-      'bundle' => 'review',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'fivestar',
-          'settings' => array(
-            'expose' => TRUE,
-            'style' => 'average',
-            'text' => 'average',
-            'widget' => array(
-              'fivestar_widget' => NULL,
-            ),
-          ),
-          'type' => 'fivestar_formatter_default',
-          'weight' => 16,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_review_welcoming',
-      'label' => 'Welcoming',
-      'required' => FALSE,
-      'settings' => array(
-        'stars' => 5,
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'module' => 'fivestar',
-        'settings' => array(
-          'widget' => array(
-            'fivestar_widget' => 'default',
-          ),
-        ),
-        'type' => 'stars',
-        'weight' => '5',
-      ),
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
-  t('Accessible Parking');
   t('Business');
   t('Business Details');
   t('Comments');
-  t('Flexible Service');
-  t('Friendly');
-  t('Gave Choices');
-  t('Gave Extra Time');
-  t('Has Employees with Disabilities');
-  t('Helpful');
-  t('Physically Accessible');
+  t('Criteria');
   t('Please provide the name, address, and any other pieces of information you can provide to help us identify the business you are reviewing.');
-  t('Respectful');
-  t('Talked Directly');
-  t('Welcoming');
+  t('Rating');
 
   return $fields;
 }
