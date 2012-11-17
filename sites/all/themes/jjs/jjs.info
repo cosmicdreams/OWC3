@@ -10,6 +10,10 @@ base theme = alpha
 hidden = TRUE
 starterkit = TRUE
 
+; PANELS
+
+plugins[panels][layouts] = panels
+
 ; REQUIRED CORE REGIONS
 
 regions[page_top] = Page Top
