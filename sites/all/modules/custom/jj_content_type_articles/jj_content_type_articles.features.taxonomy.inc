@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * jj_business_articles.features.taxonomy.inc
+ * jj_content_type_articles.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function jj_business_articles_taxonomy_default_vocabularies() {
+function jj_content_type_articles_taxonomy_default_vocabularies() {
   return array(
     'tags' => array(
       'name' => 'Tags',
