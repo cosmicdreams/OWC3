@@ -1,7 +1,73 @@
 <?php
-/**
- * @file
- * Code for the jj_content_type_review feature.
- */
 
-include_once 'jj_content_type_review.features.inc';
+/**
+ * Implementation of hook_fivestar_target_info().
+ */
+function jj_content_type_review_fivestar_target_info($field, $instance) {
+  $entity_type = $instance['entity_type'];
+
+  $options = array();
+
+  if ($entity_type == 'node' && $bundle == 'review') {
+    $options['jj_reviews_business'] = array(
+      'title' => t('Business'),
+      'callback' => '_jj_content_type_review_fivestar_target_info_reviews',
+    );
+  }
+
+  return $options;
+
+}
+
+/**
+ * Implementation of hook_field_extra_fields().
+ */
+function jj_content_type_review_field_extra_fields() {
+
+  $extra = array();
+
+  $extra['node']['business'] =  array(
+    'form' => array(),
+    'display' => array(
+      'jj_reviews_overall_rating' => array(
+        'label' => t('Overall Rating'),
+        'description' => t('Rating, as calculated from Reviews'),
+        'weight' => 0,
+      )
+    ),
+  );
+
+  return $extra;
+
+}
+
+/**
+ * Implementation of hook_node_view().
+ */
+function jj_content_type_review_node_view($node, $view_mode, $langcode) {
+  $votes = fivestar_get_votes('node', $node->nid);
+  $node->content['overall_rating_percentage'] = array(
+    '#markup' => $votes['average']['value'],
+  );
+}
+
+//
+// Helpers
+//
+
+/**
+ * Helper for hook_fivestar_target_info().
+ */
+function _jj_content_type_review_fivestar_target_info_reviews($entity, $field, $instance, $langcode) {
+  $businessField = field_get_items('node', $entity, 'field_review_business');
+  if (!empty($businessField)) {
+    $businessNid = $businessField[0]['target_id'];
+    $target = array(
+      'entity_id' => $businessNid, 
+      'entity_type' => 'node',
+    );
+    return $target;
+  }
+}
+
+
