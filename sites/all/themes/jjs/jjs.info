@@ -7,9 +7,6 @@ base theme = alpha
 
 ; IMPORTANT: DELETE THESE TWO LINES IN YOUR SUBTHEME
 
-hidden = TRUE
-starterkit = TRUE
-
 ; PANELS
 
 plugins[panels][layouts] = panels
