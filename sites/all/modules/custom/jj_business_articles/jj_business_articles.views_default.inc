@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * jjslist_business_articles.views_default.inc
+ * jj_business_articles.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function jjslist_business_articles_views_default_views() {
+function jj_business_articles_views_default_views() {
   $export = array();
 
   $view = new view();

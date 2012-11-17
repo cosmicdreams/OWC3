@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * jjslist_business_articles.strongarm.inc
+ * jj_business_articles.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function jjslist_business_articles_strongarm() {
+function jj_business_articles_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

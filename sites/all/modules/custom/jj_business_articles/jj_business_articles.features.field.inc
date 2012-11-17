@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * jjslist_business_articles.features.field.inc
+ * jj_business_articles.features.field.inc
  */
 
 /**
  * Implements hook_field_default_fields().
  */
-function jjslist_business_articles_field_default_fields() {
+function jj_business_articles_field_default_fields() {
   $fields = array();
 
   // Exported field: 'node-article-body'.
