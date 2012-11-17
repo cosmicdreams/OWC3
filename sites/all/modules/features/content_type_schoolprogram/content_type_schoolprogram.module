@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Content Type: SchoolProgram feature.
- */
-
-include_once 'content_type_schoolprogram.features.inc';
