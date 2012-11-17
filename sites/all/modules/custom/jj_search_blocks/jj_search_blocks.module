@@ -1,0 +1,59 @@
+<?php
+/**
+ * @file jj_business_articles.info
+ *
+ * Provides blocks with a form field to search by an exposed argument.
+ *
+ * @author Jon Kamke <jkamke@nerdery.com>
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function jj_search_blocks_info() {
+  $blocks['business_type'] = array(
+    'info' => t('Syndicate'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['rating'] = array(
+    'info' => t('Syndicate'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['amenity'] = array(
+    'info' => t('Syndicate'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function jj_search_blocks_view($delta) {
+  $block = array();
+
+  switch($delta) {
+    case 'business_type':
+      $block['subject'] = t('Search By Business Type');
+      $block['content'] = array(
+        '#theme' => 'jj_search_blocks_business_type',
+        '#title' => t('Search By Business Type'),
+      );
+      break;
+    case 'rating':
+      $block['subject'] = t('Search By Rating');
+      $block['content'] = array(
+        '#theme' => 'jj_search_blocks_rating',
+        '#title' => t('Search By Rating'),
+      );
+      break;
+    case 'amenity':
+      $block['subject'] = t('Search By Amenity');
+      $block['content'] = array(
+        '#theme' => 'jj_search_blocks_amenity',
+        '#title' => t('Search By Amenity'),
+      );
+      break;
+  }
+
+  return $block;
+}
