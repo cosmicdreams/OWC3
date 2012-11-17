@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * jjslist_business_articles.features.inc
+ * jj_business_articles.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function jjslist_business_articles_ctools_plugin_api() {
+function jj_business_articles_ctools_plugin_api() {
   list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
@@ -17,14 +17,14 @@ function jjslist_business_articles_ctools_plugin_api() {
 /**
  * Implements hook_views_api().
  */
-function jjslist_business_articles_views_api() {
+function jj_business_articles_views_api() {
   return array("version" => "3.0");
 }
 
 /**
  * Implements hook_image_default_styles().
  */
-function jjslist_business_articles_image_default_styles() {
+function jj_business_articles_image_default_styles() {
   $styles = array();
 
   // Exported image style: article_image_large.
@@ -79,7 +79,7 @@ function jjslist_business_articles_image_default_styles() {
 /**
  * Implements hook_node_info().
  */
-function jjslist_business_articles_node_info() {
+function jj_business_articles_node_info() {
   $items = array(
     'article' => array(
       'name' => t('Article'),
