@@ -44,15 +44,6 @@ function jjslist_business_articles_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Business (field_article_business) */
-  $handler->display->display_options['arguments']['field_article_business_target_id']['id'] = 'field_article_business_target_id';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['table'] = 'field_data_field_article_business';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['field'] = 'field_article_business_target_id';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['default_argument_type'] = 'node';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_article_business_target_id']['summary_options']['items_per_page'] = '25';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -71,6 +62,16 @@ function jjslist_business_articles_views_default_views() {
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
+  $handler->display->display_options['argument_input'] = array(
+    'field_article_business_target_id' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'Content: Business (field_article_business)',
+    ),
+  );
   $export['business_articles'] = $view;
 
   return $export;

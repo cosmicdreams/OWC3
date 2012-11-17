@@ -2,6 +2,7 @@ name = JJSList Business Articles
 description = Allows articles to be contected to a business.
 core = 7.x
 package = Features
+php = 5.2.4
 version = 7.x-1.0
 project = jjslist_business_articles
 dependencies[] = ctools
