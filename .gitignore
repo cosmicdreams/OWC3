@@ -8,3 +8,4 @@ sites/*/private
 # Added by developers to ensure we don't break the site.
 .idea
 .htaccess
+.DS_Store
