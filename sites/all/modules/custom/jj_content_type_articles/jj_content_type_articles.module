@@ -4,4 +4,4 @@
  * Code for the JJSList Business Articles feature.
  */
 
-include_once 'jj_business_articles.features.inc';
+include_once 'jj_content_type_articles.features.inc';
