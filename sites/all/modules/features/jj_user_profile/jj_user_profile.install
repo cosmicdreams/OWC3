@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ *  Installation tasks for user profiles.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function jj_user_profile_install() {
+  $terms = array(
+    0 => 'Person with a disability (age 14+)',
+    1 => 'Parent and/or Legal guardian',
+    2 => 'Family member',
+    3 => 'Friend',
+    4 => 'Supervisor or Employer',
+    5 => 'Teacher or Tutor',
+    6 => 'Job Coach',
+    7 => 'Personal support worker',
+    8 => 'Agency staff member',
+    9 => 'Health care professional or Therapist',
+    10 => 'Other',
+  );
+
+  $vocabularies = taxonomy_vocabulary_get_names();
+  $vocabName = 'user_self_description';
+  $vocabularyId = isset($vocabularies[$vocabName]) ? $vocabularies[$vocabName]->vid : null;
+
+  if (empty($vocabularyId)) {
+    // Vocab doesn't exist yet.
+    return;
+  }
+
+  $currentTerms =  db_select('taxonomy_term_data', 't')
+      ->fields('t')
+      ->condition('vid', $vocabularyId, '=')
+      ->execute()
+      ->fetchAssoc();
+
+  if (count($currentTerms) >= count($terms)) {
+    // The terms were already generated before.
+    return;
+  }
+
+  foreach ($terms as $weight => $term) {
+    $newTerm = new stdClass();
+    $newTerm->weight = $weight;
+    $newTerm->name = $term;
+    $newTerm->vid = $vocabularyId;
+    $newTerm->type = 'taxonomy_term';
+    $newTerm->bundle = $vocabName;
+    taxonomy_term_save($newTerm);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function jj_user_profile_uninstall() {
+}
