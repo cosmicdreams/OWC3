@@ -1,8 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Content Type: Exhibit feature.
- */
-
-
-include_once 'content_type_exhibit.features.inc';
