@@ -13,15 +13,12 @@
 function jj_search_blocks_info() {
   $blocks['business_type'] = array(
     'info' => t('Syndicate'),
-    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['rating'] = array(
     'info' => t('Syndicate'),
-    'cache' => DRUPAL_NO_CACHE,
   );
   $blocks['amenity'] = array(
     'info' => t('Syndicate'),
-    'cache' => DRUPAL_NO_CACHE,
   );
 }
 
@@ -37,6 +34,7 @@ function jj_search_blocks_view($delta) {
       $block['content'] = array(
         '#theme' => 'jj_search_blocks_business_type',
         '#title' => t('Search By Business Type'),
+        '#content' => jj_search_blocks_business_type_form(),
       );
       break;
     case 'rating':
@@ -44,6 +42,7 @@ function jj_search_blocks_view($delta) {
       $block['content'] = array(
         '#theme' => 'jj_search_blocks_rating',
         '#title' => t('Search By Rating'),
+        '#content' => jj_search_blocks_rating_form(),
       );
       break;
     case 'amenity':
@@ -51,9 +50,88 @@ function jj_search_blocks_view($delta) {
       $block['content'] = array(
         '#theme' => 'jj_search_blocks_amenity',
         '#title' => t('Search By Amenity'),
+        '#content' => jj_search_blocks_amenity(),
       );
       break;
   }
 
   return $block;
+}
+
+/**
+ * Implements hook_theme()
+ */
+function jj_search_blocks_theme() {
+  return array(
+    'jj_search_blocks_business_type' => array(
+      'variables' => array('content' => NULL),
+      'path' => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template' => 'jj-search-blocks-business-type',
+    ),
+    'jj_search_blocks_rating' => array(
+      'variables' => array('content' => NULL),
+      'path' => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template' => 'jj-search-blocks-rating',
+    ),
+    'jj_search_blocks_amenity' => array(
+      'variables' => array('content' => NULL),
+      'path' => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template' => 'jj-search-blocks-amenity',
+    ),
+  );
+}
+
+/**
+ * Form to search by business type.
+ *
+ * @see jj_search_blocks_view()
+ */
+function jj_search_blocks_business_type_form() {
+  $form = array();
+
+  $form['business_type'] = array(
+    '#type' => '',
+    '#title' => t('Search by Business Type'),
+  );
+
+  return $form;
+}
+
+/**
+ * Form to search by rating.
+ *
+ * @see jj_search_blocks_view()
+ */
+function jj_search_blocks_rating_form() {
+  $form = array();
+
+  $form['rating'] = array(
+    '#type' => 'select',
+    '#title' => t('Search by Rating'),
+    '#options' => array(
+      1 => t('1'),
+      2 => t('2'),
+      3 => t('3'),
+      4 => t('4'),
+      5 => t('5'),
+    ),
+  );
+
+  return $form;
+}
+
+/**
+ * Form to search by amenity.
+ *
+ * @see jj_search_blocks_view()
+ */
+function jj_search_blocks_amenity() {
+  $form = array();
+
+  $form['amenity'] = array(
+    '#type' => '',
+    '#title' => t(''),
+  );
+
+  return $form;
 }
