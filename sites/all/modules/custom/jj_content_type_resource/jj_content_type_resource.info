@@ -1,0 +1,14 @@
+name = JJ: Content Type: Resource
+core = 7.x
+package = JJs List
+version = 7.x-1.0
+project = jj_content_type_resource
+dependencies[] = features
+dependencies[] = field_sql_storage
+dependencies[] = file
+dependencies[] = node
+dependencies[] = text
+features[features_api][] = api:1
+features[field][] = node-resource-body
+features[field][] = node-resource-field_resource_attachments
+features[node][] = resource
