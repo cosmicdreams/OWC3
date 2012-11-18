@@ -1,0 +1,12 @@
+name = Goroo Trip Planner
+description = An example outlining how a module can define blocks.
+package = Example modules
+core = 7.x
+dependencies[] = block
+files[] = jj_goroo_planner.test
+
+; Information added by drupal.org packaging script on 2012-11-15
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "jj"
+datestamp = "1352984110"
