@@ -483,6 +483,9 @@ function jj_content_type_business_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_business_hours',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -498,11 +501,9 @@ function jj_content_type_business_field_default_fields() {
       ),
       'locked' => '0',
       'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
+      'settings' => array(),
       'translatable' => '0',
-      'type' => 'text',
+      'type' => 'text_long',
     ),
     'field_instance' => array(
       'bundle' => 'business',
@@ -515,28 +516,7 @@ function jj_content_type_business_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '9',
-        ),
-        'full' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-        'search_index' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
-        ),
-        'search_result' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '9',
+          'weight' => 15,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -557,9 +537,9 @@ function jj_content_type_business_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'size' => '60',
+          'rows' => '5',
         ),
-        'type' => 'text_textfield',
+        'type' => 'text_textarea',
         'weight' => '9',
       ),
     ),
@@ -1383,7 +1363,7 @@ function jj_content_type_business_field_default_fields() {
         'module' => 'number',
         'settings' => array(),
         'type' => 'number',
-        'weight' => '16',
+        'weight' => '15',
       ),
     ),
   );
