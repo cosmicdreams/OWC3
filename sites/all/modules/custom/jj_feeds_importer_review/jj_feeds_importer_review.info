@@ -1,0 +1,11 @@
+name = Review Importer
+description = Import Reviews
+core = 7.x
+package = JJs List
+version = 7.x-0.1
+project = jj_feeds_importer_review
+dependencies[] = feeds
+dependencies[] = jj_content_type_review
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:1
+features[feeds_importer][] = review_importer

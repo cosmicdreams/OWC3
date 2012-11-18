@@ -5,7 +5,7 @@ engine = phptemplate
 screenshot = screenshot.png
 base theme = alpha
 
-; IMPORTANT: DELETE THESE TWO LINES IN YOUR SUBTHEME
+
 
 <<<<<<< HEAD
 ; PANELS
@@ -28,6 +28,10 @@ regions[footer] = Footer
 
 regions[sidebar_first] = Sidebar First
 regions[sidebar_second] = Sidebar Second
+
+; FEATURES
+
+features[] = logo
 
 ; ZONES
 
