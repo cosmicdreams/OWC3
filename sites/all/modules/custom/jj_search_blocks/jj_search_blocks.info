@@ -1,4 +1,4 @@
 name = JJ Search Blocks
 description = Provides blocks with a form field to search on exposed filters.
 core = 7.x
-package = JJ
+package = JJs List
