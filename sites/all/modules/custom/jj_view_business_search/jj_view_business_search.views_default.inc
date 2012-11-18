@@ -39,6 +39,18 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h2';
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '600',
+  );
   /* Field: Content: Business Types */
   $handler->display->display_options['fields']['field_business_types']['id'] = 'field_business_types';
   $handler->display->display_options['fields']['field_business_types']['table'] = 'field_data_field_business_types';
@@ -103,6 +115,7 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['field_business_features_tid']['id'] = 'field_business_features_tid';
   $handler->display->display_options['filters']['field_business_features_tid']['table'] = 'field_data_field_business_features';
   $handler->display->display_options['filters']['field_business_features_tid']['field'] = 'field_business_features_tid';
+  $handler->display->display_options['filters']['field_business_features_tid']['operator'] = 'and';
   $handler->display->display_options['filters']['field_business_features_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_business_features_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_business_features_tid']['expose']['operator_id'] = 'field_business_features_tid_op';
