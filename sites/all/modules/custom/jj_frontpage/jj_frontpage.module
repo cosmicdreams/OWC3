@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the JJ: Frontpage feature.
+ */
+
+include_once 'jj_frontpage.features.inc';
