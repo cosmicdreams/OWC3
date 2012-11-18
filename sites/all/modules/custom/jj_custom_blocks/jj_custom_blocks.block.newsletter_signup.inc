@@ -22,6 +22,13 @@ function jj_custom_blocks_block_newsletter_signup_block_view() {
  * Block form.
  */
 function _jj_custom_blocks_newsletter_signup_form($form = array(), &$form_state = array()) {
+  $form['text'] = array(
+    '#type' => 'markup',
+    '#markup' => t('Get announcements and news in your email.'),
+    '#attributes' => array(
+    ),
+  );
+
   $form['email'] = array(
     '#type' => 'textfield',
     '#size' => 60,
@@ -30,6 +37,11 @@ function _jj_custom_blocks_newsletter_signup_form($form = array(), &$form_state 
     '#attributes' => array(
       'placeholder' => t('Your email address'),
     ),
+  );
+
+  $form['after'] = array(
+    '#type' => 'markup',
+    '#markup' => t('We will not share your email address with anyone, ever.'),
   );
 
   $form['submit'] = array(

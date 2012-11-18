@@ -8,16 +8,25 @@
 Base CSS
 
 ***************************************************************************************************************/
-*,html { box-sizing: borderbox; }
 
-body { font-size: 18px; 
-	line-height: 1.4em; 
+
+body { font-size: 18px;
+	line-height: 1.4em;
 	word-spacing: 0.125em;
+	font-family: Cabin, Verdana, Geneva, sans-serif;
 
 }
 
+<<<<<<< HEAD
 h1,h2,h3,h4,h5 { line-height: 1.25em;
-	letter-spacing: .045em; 
+	letter-spacing: .045em;
+=======
+h1,h2,h3,
+h4,h5, .menu { line-height: 1.25em;
+	letter-spacing: .045em;
+	font-family: "Yanone Kaffeesatz", ""Lucida Grande"", Helvetica, Arial;
+
+>>>>>>> b8e3cfc08c2921665fb24bc4134dd79e51e9b2e0
 }
 
 h1 { font-size: 2em; }
@@ -26,15 +35,15 @@ h3 { font-size: 1.33em; }
 h4 { font-size: 1.15em; }
 h5 { font-size: 1em; }
 
-a { color: #EE492D; 
-	text-decoration: none; 
+a { color: #EE492D;
+	text-decoration: none;
 }
 
 a: focus, a:hover, a:active { text-decoration: underline; }
 
 :active, :hover { outline: 0;}
 
-:focus { outline: medium dotted; 
+:focus { outline: medium dotted;
 	overflow: hidden;
 }
 
@@ -65,7 +74,16 @@ Components CSS
 .business {}
 
 
-.menu { font-size: 1.1em;  width: 100%;
+<<<<<<< HEAD
+.menu { font-size: 1.2em;
+
+
+=======
+.menu { font-size: 1.5em;  
+	width: 70%;
+	margin: 0 auto; 
+	 
+>>>>>>> phase4-Dillon
  }
 
 .button {}
@@ -80,7 +98,7 @@ Components CSS
 	background-color: #eee;
 }
 
-#zone-header { 
+#zone-header {
 	height: 152px;
 	background: url('../images/header_background.png') no-repeat 52% 0;
 }
@@ -99,15 +117,22 @@ Layout CSS
 
 .sidebar {}
 
-.menu li { float: left; 
+.menu li { float: left;
 	margin-right: 40px;
 }
 .menu li:last-child { margin-left: 80px; }
 
 
 
-form#search-block-form { width: 30%; 
+form#search-block-form { width: 30%;
 	margin: 20px auto;
 
 }
 form#search-block-form  input { width: 100%; margin: 5px auto; }
+
+
+/** Footer **/
+#region-footer .block {
+  float: left;
+}
+
