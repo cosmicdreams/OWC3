@@ -8,49 +8,70 @@
  */
 
 /**
+ * The taxonomy vocabulary machine name for Business Types
+ */
+define('BUSSINESS_TYPE_VOCABULARY', 'tags');
+
+function jj_search_blocks_menu() {
+  $items['business/autocomplete/%'] = array(
+    'title'            => 'Business autocomplete',
+    'page callback'    => 'jj_search_blocks_business_autocomplete',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type'             => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
  * Implements hook_block_info().
  */
-function jj_search_blocks_info() {
+function jj_search_blocks_block_info() {
+  $blocks = array();
+
   $blocks['business_type'] = array(
-    'info' => t('Syndicate'),
+    'info' => t('Search Business Type'),
   );
-  $blocks['rating'] = array(
-    'info' => t('Syndicate'),
+  $blocks['rating']        = array(
+    'info' => t('Search Rating'),
   );
-  $blocks['amenity'] = array(
-    'info' => t('Syndicate'),
+  $blocks['amenity']       = array(
+    'info' => t('Search Amenity'),
   );
+
+  return $blocks;
 }
 
 /**
  * Implements hook_block_view().
  */
-function jj_search_blocks_view($delta) {
+function jj_search_blocks_block_view($delta) {
   $block = array();
 
-  switch($delta) {
+  switch ($delta) {
     case 'business_type':
       $block['subject'] = t('Search By Business Type');
       $block['content'] = array(
-        '#theme' => 'jj_search_blocks_business_type',
-        '#title' => t('Search By Business Type'),
-        '#content' => jj_search_blocks_business_type_form(),
+        '#theme'   => 'jj_search_blocks_business_type',
+        '#title'   => t('Search By Business Type'),
+        '#content' => jj_search_blocks_business_type_content(),
       );
       break;
     case 'rating':
       $block['subject'] = t('Search By Rating');
       $block['content'] = array(
-        '#theme' => 'jj_search_blocks_rating',
-        '#title' => t('Search By Rating'),
-        '#content' => jj_search_blocks_rating_form(),
+        '#theme'   => 'jj_search_blocks_rating',
+        '#title'   => t('Search By Rating'),
+        '#content' => jj_search_blocks_rating_content(),
       );
       break;
     case 'amenity':
       $block['subject'] = t('Search By Amenity');
       $block['content'] = array(
-        '#theme' => 'jj_search_blocks_amenity',
-        '#title' => t('Search By Amenity'),
-        '#content' => jj_search_blocks_amenity(),
+        '#theme'   => 'jj_search_blocks_amenity',
+        '#title'   => t('Search By Amenity'),
+        '#content' => jj_search_blocks_amenity_content(),
       );
       break;
   }
@@ -65,20 +86,36 @@ function jj_search_blocks_theme() {
   return array(
     'jj_search_blocks_business_type' => array(
       'variables' => array('content' => NULL),
-      'path' => drupal_get_path('module', 'jj_search_blocks') . '/templates',
-      'template' => 'jj-search-blocks-business-type',
+      'path'      => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template'  => 'jj-search-blocks-business-type',
     ),
-    'jj_search_blocks_rating' => array(
+    'jj_search_blocks_rating'        => array(
       'variables' => array('content' => NULL),
-      'path' => drupal_get_path('module', 'jj_search_blocks') . '/templates',
-      'template' => 'jj-search-blocks-rating',
+      'path'      => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template'  => 'jj-search-blocks-rating',
     ),
-    'jj_search_blocks_amenity' => array(
+    'jj_search_blocks_amenity'       => array(
       'variables' => array('content' => NULL),
-      'path' => drupal_get_path('module', 'jj_search_blocks') . '/templates',
-      'template' => 'jj-search-blocks-amenity',
+      'path'      => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template'  => 'jj-search-blocks-amenity',
     ),
   );
+}
+
+/**
+ * Block content for business_type block.
+ *
+ * @see jj_search_blocks_block_view()
+ */
+function jj_search_blocks_business_type_content() {
+  $form = drupal_get_form('jj_search_blocks_business_type_form');
+
+  $output = array(
+    '#theme' => 'jj_search_blocks_business_type',
+    '#content' => $form,
+  );
+
+  return $output;
 }
 
 /**
@@ -86,15 +123,37 @@ function jj_search_blocks_theme() {
  *
  * @see jj_search_blocks_view()
  */
-function jj_search_blocks_business_type_form() {
+function jj_search_blocks_business_type_form($form, &$form_state) {
   $form = array();
 
   $form['business_type'] = array(
-    '#type' => '',
-    '#title' => t('Search by Business Type'),
+    '#type'              => 'textfield',
+    '#title'             => t('Search by Business Type'),
+    '#size'              => 20,
+    '#autocomplete_path' => 'business/autocomplete/BUSSINESS_TYPE_VOCABULARY',
+  );
+  $form['submit']        = array(
+    '#type'  => 'submit',
+    '#value' => t('Search'),
   );
 
   return $form;
+}
+
+/**
+ * Block content for rating.
+ *
+ * @see jj_search_blocks_block_view()
+ */
+function jj_search_blocks_rating_content() {
+  $form = drupal_get_form('jj_search_blocks_rating_form');
+
+  $output = array(
+    '#theme' => 'jj_search_blocks_rating',
+    '#content' => $form,
+  );
+
+  return $output;
 }
 
 /**
@@ -102,12 +161,12 @@ function jj_search_blocks_business_type_form() {
  *
  * @see jj_search_blocks_view()
  */
-function jj_search_blocks_rating_form() {
+function jj_search_blocks_rating_form($form, &$form_state) {
   $form = array();
 
   $form['rating'] = array(
-    '#type' => 'select',
-    '#title' => t('Search by Rating'),
+    '#type'    => 'select',
+    '#title'   => t('Search by Rating'),
     '#options' => array(
       1 => t('1'),
       2 => t('2'),
@@ -116,8 +175,28 @@ function jj_search_blocks_rating_form() {
       5 => t('5'),
     ),
   );
+  $form['submit'] = array(
+    '#type'  => 'submit',
+    '#value' => t('Search'),
+  );
 
   return $form;
+}
+
+/**
+ * Block content for amenity
+ *
+ * @see jj_search_blocks_block_view()
+ */
+function jj_search_blocks_amenity_content() {
+  $form = drupal_get_form('jj_search_blocks_amenity_form');
+
+  $output = array(
+    '#theme' => 'jj_search_blocks_amenity',
+    '#content' => $form,
+  );
+
+  return $output;
 }
 
 /**
@@ -125,13 +204,45 @@ function jj_search_blocks_rating_form() {
  *
  * @see jj_search_blocks_view()
  */
-function jj_search_blocks_amenity() {
+function jj_search_blocks_amenity_form($form, &$form_state) {
   $form = array();
 
   $form['amenity'] = array(
-    '#type' => '',
+    '#type'  => 'textfield',
     '#title' => t(''),
+  );
+  $form['submit']  = array(
+    '#type'  => 'submit',
+    '#value' => t('Search'),
   );
 
   return $form;
+}
+
+/**
+ * Autocomplete function
+ *
+ * @param string $input User input text
+ * @param int $vocabulary Vocabulary id
+ */
+function jj_search_blocks_business_autocomplete($vocabulary = 'tags', $input = '') {
+  $matches = array();
+  if ($input) {
+    $query = db_select('taxonomy_term_data', 'ttd');
+    $query->join('taxonomy_vocabulary', 'tv', 'ttd.vid = tv.vid');
+
+      $query->fields('ttd', array('name'))
+      ->fields('tv', array('machine_name'))
+      ->condition('tv.machine_name', $vocabulary, '=')
+      ->condition('ttd.name', db_like($input) . '%', 'LIKE')
+      ->range(0, 10);
+
+      $result = $query->execute();
+
+    foreach ($result as $user) {
+      $matches[$user->name] = check_plain($user->name);
+    }
+  }
+
+  drupal_json_output($matches);
 }
