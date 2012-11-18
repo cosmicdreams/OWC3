@@ -10,6 +10,8 @@
  * This hook generates the contents of the blocks themselves.
  */
 function jj_custom_blocks_block_goroo_trip_planner_block_view() {
+  $nearest_stop = '';
+  $default_address = '';
   if (arg(0) == 'node' && is_numeric(arg(1))) {
   	$nid = arg(1); 
   	$thisnode = node_load($nid);  //dpm($thisnode);
