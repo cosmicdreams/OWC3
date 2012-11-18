@@ -2,7 +2,7 @@
 // Plugin definition
 $plugin = array(
   'title'       => t('Frontpage'),
-  'icon'        => '',
+  'icon'        => '80.jpg',
   'category'    => t('JJ'),
   'theme'       => 'jj_frontpage',
   'css'         => 'jj_frontpage.css',
