@@ -22,7 +22,7 @@ define('BUSINESS_TYPE_SEARCH_URL', 'business-search');
 /**
  * URL for rating search results.
  */
-define('RATING_SEARCH_URL', 'node/1');
+define('RATING_SEARCH_URL', 'business-search');
 /**
  * URL for the amenity search results.
  */
@@ -146,7 +146,7 @@ function jj_search_blocks_business_type_content() {
 function jj_search_blocks_business_type_form($form, &$form_state) {
   $form = array();
 
-  $form['business_types'] = array(
+  $form['types'] = array(
     '#type'              => 'textfield',
     '#title'             => t('Search by Business Type'),
     '#size'              => 20,
@@ -229,7 +229,7 @@ function jj_search_blocks_amenity_content() {
 function jj_search_blocks_amenity_form($form, &$form_state) {
   $form = array();
 
-  $form['amenity'] = array(
+  $form['features'] = array(
     '#type'  => 'textfield',
     '#title' => t('Amenity Search'),
     '#size' => 20,
