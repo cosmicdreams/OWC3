@@ -256,7 +256,7 @@ function jj_search_blocks_taxonomy_autocomplete($vocabulary = 'tags', $input = '
     $query = db_select('taxonomy_term_data', 'ttd');
     $query->join('taxonomy_vocabulary', 'tv', 'ttd.vid = tv.vid');
 
-      $query->fields('ttd', array('name'))
+      $query->fields('ttd', array('name', 'tid'))
       ->fields('tv', array('machine_name'))
       ->condition('tv.machine_name', $vocabulary, '=')
       ->condition('ttd.name', db_like($input) . '%', 'LIKE')
@@ -264,8 +264,8 @@ function jj_search_blocks_taxonomy_autocomplete($vocabulary = 'tags', $input = '
 
       $result = $query->execute();
 
-    foreach ($result as $user) {
-      $matches[$user->name] = check_plain($user->name);
+    foreach ($result as $vocab) {
+      $matches[$vocab->name] = check_plain($vocab->name);
     }
   }
 
