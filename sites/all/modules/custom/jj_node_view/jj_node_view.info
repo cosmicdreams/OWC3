@@ -5,6 +5,7 @@ package = JJs List
 version = 7.x-1.0
 project = jj_node_view
 dependencies[] = ctools
+dependencies[] = panels
 dependencies[] = page_manager
 dependencies[] = views
 features[ctools][] = page_manager:pages_default:1
