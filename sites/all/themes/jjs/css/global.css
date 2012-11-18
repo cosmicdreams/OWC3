@@ -38,16 +38,6 @@ a: focus, a:hover, a:active { text-decoration: underline; }
 	overflow: hidden;
 }
 
-#section-header {
-	height: 152px;
-	background-color: #eee;
-}
-
-#section-footer {
-	height: 200px;
-	background-color: #eee;
-}
-
 .menu .leaf {
 	list-style-type: none;
 	list-style-image: none;
@@ -80,7 +70,20 @@ Components CSS
 
 .button {}
 
-.section-header { background: url('../images/header_background.png') no-repeat 52% 0; }
+#section-header {
+	height: 152px;
+	background: url('../images/page_bkgd.png') repeat-x;
+}
+
+#section-footer {
+	height: 200px;
+	background-color: #eee;
+}
+
+#zone-header { 
+	height: 152px;
+	background: url('../images/header_background.png') no-repeat 52% 0;
+}
 
 .section-footer { background-color: #eeeeee ; }
 
