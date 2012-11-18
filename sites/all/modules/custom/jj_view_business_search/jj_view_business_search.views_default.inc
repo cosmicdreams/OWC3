@@ -32,15 +32,10 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Vote results */
+  /* Relationship: Broken/missing handler */
   $handler->display->display_options['relationships']['votingapi_cache']['id'] = 'votingapi_cache';
   $handler->display->display_options['relationships']['votingapi_cache']['table'] = 'node';
   $handler->display->display_options['relationships']['votingapi_cache']['field'] = 'votingapi_cache';
-  $handler->display->display_options['relationships']['votingapi_cache']['votingapi'] = array(
-    'value_type' => 'percent',
-    'tag' => 'vote',
-    'function' => 'average',
-  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -146,7 +141,7 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['field_business_features_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_business_features_tid']['vocabulary'] = 'business_features';
   $handler->display->display_options['filters']['field_business_features_tid']['hierarchy'] = 1;
-  /* Filter criterion: Vote results: Value */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['value']['id'] = 'value';
   $handler->display->display_options['filters']['value']['table'] = 'votingapi_cache';
   $handler->display->display_options['filters']['value']['field'] = 'value';

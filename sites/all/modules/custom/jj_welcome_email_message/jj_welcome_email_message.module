@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the JJ Welcome Email Message feature.
+ */
+
+include_once 'jj_welcome_email_message.features.inc';
