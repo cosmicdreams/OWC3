@@ -41,12 +41,12 @@ function jj_custom_blocks_block_goroo_trip_planner_block_view() {
 <div id="tripplannerhs" class="hide">
 <div id="tpmenu" class="clr">
 <div class="tponleft">
-	<img src="' . $imagePath . '/onsepleft.gif" border="0" />
+	<img src="/' . $imagePath . '/onsepleft.gif" border="0" />
 </div>
 <div class="topmenu"><a href="#tripplanner">Trip Planner</a></div>
 
 <div class="tponright">
-	<img src="' . $imagePath . '/onsepright.gif" border="0" />
+	<img src="/' . $imagePath . '/onsepright.gif" border="0" />
 </div>
 
 
@@ -114,7 +114,7 @@ function jj_custom_blocks_block_goroo_trip_planner_block_view() {
 		<select name="f_year" id="f_year" onChange="javascript:tc_setYear(\'f\', this[this.selectedIndex].value, \'mod_goroo/\');" class="tcyear" title="Year">
 			<option value="">Year</option><option value="2012" selected>2012</option><option value="2013">2013</option></select>
 
-		<a href="javascript:displayDatePicker(\'f\', \'f_month\', \'ymd\', \'-\');"><img src="' . $imagePath . '/iconCalendar.gif" border="0" align="absmiddle" alt="visual Calendar, screen readers may use the proceeding combo boxes to set the date" /></a>
+		<a href="javascript:displayDatePicker(\'f\', \'f_month\', \'ymd\', \'-\');"><img src="/' . $imagePath . '/iconCalendar.gif" border="0" align="absmiddle" alt="visual Calendar, screen readers may use the proceeding combo boxes to set the date" /></a>
 	</div>
 	<br clear="all" />
 	<div class="tpboxtitle">&nbsp;</div>
@@ -154,7 +154,7 @@ function jj_custom_blocks_block_goroo_trip_planner_block_view() {
 		<div class="tpbox2">
 			<input type="submit" value="Submit">
 			<div class="tpboxtitle">&nbsp;</div><div class="tpboxinput"><p align="center">
-				<a href="javascript:pageTracker._trackEvent(\'Goroo\', \'Get Directions\', \'/pages/bridge_builder_detail/28.php?id=34&page=\'); addTravelDate();"><img src="' . $imagePath . '/Goroo.jpg" style="vertical-align: middle;" border="0" alt="Submit:  goroo trip planner"></a>
+				<a href="javascript:pageTracker._trackEvent(\'Goroo\', \'Get Directions\', \'/pages/bridge_builder_detail/28.php?id=34&page=\'); addTravelDate();"><img src="/' . $imagePath . '/Goroo.jpg" style="vertical-align: middle;" border="0" alt="Submit:  goroo trip planner"></a>
 </p>
 </form>
 
