@@ -61,6 +61,11 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['fields']['field_business_features']['table'] = 'field_data_field_business_features';
   $handler->display->display_options['fields']['field_business_features']['field'] = 'field_business_features';
   $handler->display->display_options['fields']['field_business_features']['delta_offset'] = '0';
+  /* Sort criterion: Content: Promoted to front page */
+  $handler->display->display_options['sorts']['promote']['id'] = 'promote';
+  $handler->display->display_options['sorts']['promote']['table'] = 'node';
+  $handler->display->display_options['sorts']['promote']['field'] = 'promote';
+  $handler->display->display_options['sorts']['promote']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
