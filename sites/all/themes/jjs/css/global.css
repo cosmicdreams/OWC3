@@ -8,7 +8,7 @@
 Base CSS
 
 ***************************************************************************************************************/
-
+*,html { box-sizing: borderbox; }
 
 body { font-size: 18px; 
 	line-height: 1.4em; 
@@ -38,3 +38,73 @@ a: focus, a:hover, a:active { text-decoration: underline; }
 	overflow: hidden;
 }
 
+#section-header {
+	height: 152px;
+	background-color: #eee;
+}
+
+#section-footer {
+	height: 200px;
+	background-color: #eee;
+}
+
+.menu .leaf {
+	list-style-type: none;
+	list-style-image: none;
+}
+
+form {}
+
+
+
+
+
+
+/****************************************************************************************************************
+
+Components CSS
+
+***************************************************************************************************************/
+
+.review {}
+
+.profile {}
+
+.person {}
+
+.business {}
+
+
+.menu { font-size: 1.1em;  width: 100%;
+ }
+
+.button {}
+
+.section-header { background: url('../images/header_background.png') no-repeat 52% 0; }
+
+.section-footer { background-color: #eeeeee ; }
+
+input.form-submit{ display: none; }
+
+
+
+/****************************************************************************************************************
+
+Layout CSS
+
+***************************************************************************************************************/
+
+.sidebar {}
+
+.menu li { float: left; 
+	margin-right: 40px;
+}
+.menu li:last-child { margin-left: 80px; }
+
+
+
+form#search-block-form { width: 30%; 
+	margin: 20px auto;
+
+}
+form#search-block-form  input { width: 100%; margin: 5px auto; }
