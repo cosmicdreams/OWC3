@@ -1,4 +1,4 @@
-<?php if ($header): ?>
+<?php if ($content['header']): ?>
 <div class="jj-header">
   <?php print $content['header']; ?>
 </div>
