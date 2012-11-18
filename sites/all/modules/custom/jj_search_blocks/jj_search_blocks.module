@@ -1,0 +1,273 @@
+<?php
+/**
+ * @file jj_business_articles.info
+ *
+ * Provides blocks with a form field to search by an exposed argument.
+ *
+ * @author Jon Kamke <jkamke@nerdery.com>
+ */
+
+/**
+ * The taxonomy vocabulary machine name for Business Types
+ */
+define('BUSINESS_TYPE_VOCABULARY', 'business_types');
+/**
+ * The taxonomy vaocabulary machine name for Business Amenities
+ */
+define('BUSINESS_AMENITIES', 'business_features');
+/**
+ * URL for the busines type search results.
+ */
+define('BUSINESS_TYPE_SEARCH_URL', 'business-search');
+/**
+ * URL for rating search results.
+ */
+define('RATING_SEARCH_URL', 'business-search');
+/**
+ * URL for the amenity search results.
+ */
+define('AMENITY_SEARCH_URL', 'business-search');
+/**
+ * Range limit for the return results for the auto complete
+ */
+const AUTOCOMPLETE_RANGE_MAX = 10;
+
+function jj_search_blocks_menu() {
+  $items['business/autocomplete/%'] = array(
+    'title'            => 'Business autocomplete',
+    'page callback'    => 'jj_search_blocks_taxonomy_autocomplete',
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+    'type'             => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function jj_search_blocks_block_info() {
+  $blocks = array();
+
+  $blocks['business_type'] = array(
+    'info' => t('Search Business Type'),
+  );
+  $blocks['rating']        = array(
+    'info' => t('Search Rating'),
+  );
+  $blocks['amenity']       = array(
+    'info' => t('Search Amenity'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function jj_search_blocks_block_view($delta) {
+  $block = array();
+
+  switch ($delta) {
+    case 'business_type':
+      $block['subject'] = t('Search By Business Type');
+      $block['content'] = array(
+        '#theme'   => 'jj_search_blocks_business_type',
+        '#title'   => t('Search By Business Type'),
+        '#content' => jj_search_blocks_business_type_content(),
+      );
+      break;
+    case 'rating':
+      $block['subject'] = t('Search By Rating');
+      $block['content'] = array(
+        '#theme'   => 'jj_search_blocks_rating',
+        '#title'   => t('Search By Rating'),
+        '#content' => jj_search_blocks_rating_content(),
+      );
+      break;
+    case 'amenity':
+      $block['subject'] = t('Search By Amenity');
+      $block['content'] = array(
+        '#theme'   => 'jj_search_blocks_amenity',
+        '#title'   => t('Search By Amenity'),
+        '#content' => jj_search_blocks_amenity_content(),
+      );
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Implements hook_theme()
+ */
+function jj_search_blocks_theme() {
+  return array(
+    'jj_search_blocks_business_type' => array(
+      'variables' => array('content' => NULL),
+      'path'      => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template'  => 'jj-search-blocks-business-type',
+    ),
+    'jj_search_blocks_rating'        => array(
+      'variables' => array('content' => NULL),
+      'path'      => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template'  => 'jj-search-blocks-rating',
+    ),
+    'jj_search_blocks_amenity'       => array(
+      'variables' => array('content' => NULL),
+      'path'      => drupal_get_path('module', 'jj_search_blocks') . '/templates',
+      'template'  => 'jj-search-blocks-amenity',
+    ),
+  );
+}
+
+/**
+ * Block content for business_type block.
+ *
+ * @see jj_search_blocks_block_view()
+ */
+function jj_search_blocks_business_type_content() {
+  $form = drupal_get_form('jj_search_blocks_business_type_form');
+
+  $output = array(
+    '#theme' => 'jj_search_blocks_business_type',
+    '#content' => $form,
+  );
+
+  return $output;
+}
+
+/**
+ * Form to search by business type.
+ *
+ * @see jj_search_blocks_view()
+ */
+function jj_search_blocks_business_type_form($form, &$form_state) {
+  $form = array();
+
+  $form['types'] = array(
+    '#type'              => 'textfield',
+    '#title'             => t('Search by Business Type'),
+    '#size'              => 20,
+    '#autocomplete_path' => 'business/autocomplete/' . BUSINESS_TYPE_VOCABULARY,
+  );
+  $form['submit']        = array(
+    '#type'  => 'submit',
+    '#value' => t('Search'),
+  );
+  $form['#action'] = url(BUSINESS_TYPE_SEARCH_URL);
+
+  return $form;
+}
+
+/**
+ * Block content for rating.
+ *
+ * @see jj_search_blocks_block_view()
+ */
+function jj_search_blocks_rating_content() {
+  $form = drupal_get_form('jj_search_blocks_rating_form');
+
+  $output = array(
+    '#theme' => 'jj_search_blocks_rating',
+    '#content' => $form,
+  );
+
+  return $output;
+}
+
+/**
+ * Form to search by rating.
+ *
+ * @see jj_search_blocks_view()
+ */
+function jj_search_blocks_rating_form($form, &$form_state) {
+  $form = array();
+
+  $form['rating'] = array(
+    '#type'    => 'select',
+    '#title'   => t('Search by Rating'),
+    '#options' => array(
+      1 => t('1'),
+      2 => t('2'),
+      3 => t('3'),
+      4 => t('4'),
+      5 => t('5'),
+    ),
+  );
+  $form['submit'] = array(
+    '#type'  => 'submit',
+    '#value' => t('Search'),
+  );
+  $form['#action'] = url(RATING_SEARCH_URL);
+
+  return $form;
+}
+
+/**
+ * Block content for amenity
+ *
+ * @see jj_search_blocks_block_view()
+ */
+function jj_search_blocks_amenity_content() {
+  $form = drupal_get_form('jj_search_blocks_amenity_form');
+
+  $output = array(
+    '#theme' => 'jj_search_blocks_amenity',
+    '#content' => $form,
+  );
+
+  return $output;
+}
+
+/**
+ * Form to search by amenity.
+ *
+ * @see jj_search_blocks_view()
+ */
+function jj_search_blocks_amenity_form($form, &$form_state) {
+  $form = array();
+
+  $form['features'] = array(
+    '#type'  => 'textfield',
+    '#title' => t('Amenity Search'),
+    '#size' => 20,
+    '#autocomplete_path' => 'business/autocomplete/' . BUSINESS_AMENITIES,
+  );
+  $form['submit']  = array(
+    '#type'  => 'submit',
+    '#value' => t('Search'),
+  );
+  $form['#action'] = url(AMENITY_SEARCH_URL);
+
+  return $form;
+}
+
+/**
+ * Autocomplete function
+ *
+ * @param string $input User input text
+ * @param int $vocabulary Vocabulary machine name
+ */
+function jj_search_blocks_taxonomy_autocomplete($vocabulary = 'tags', $input = '') {
+  $matches = array();
+  if ($input) {
+    $query = db_select('taxonomy_term_data', 'ttd');
+    $query->join('taxonomy_vocabulary', 'tv', 'ttd.vid = tv.vid');
+
+      $query->fields('ttd', array('name', 'tid'))
+      ->fields('tv', array('machine_name'))
+      ->condition('tv.machine_name', $vocabulary, '=')
+      ->condition('ttd.name', db_like($input) . '%', 'LIKE')
+      ->range(0, AUTOCOMPLETE_RANGE_MAX);
+
+      $result = $query->execute();
+
+    foreach ($result as $vocab) {
+      $matches[$vocab->name] = check_plain($vocab->name);
+    }
+  }
+
+  drupal_json_output($matches);
+}
