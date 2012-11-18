@@ -1,0 +1,12 @@
+name = Business Importer
+description = Imports Businesses
+core = 7.x
+package = JJs List
+php = 5.2.4
+version = 7.x-0.3
+project = jj_feeds_importer_business
+dependencies[] = feeds
+dependencies[] = jj_content_type_business
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:1
+features[feeds_importer][] = business_importer
