@@ -20,6 +20,7 @@ features[features_api][] = api:1
 features[field][] = node-review-body
 features[field][] = node-review-field_mighty_site_id
 features[field][] = node-review-field_review_business
+features[field][] = node-review-field_review_business_response
 features[field][] = node-review-field_review_businessdetails
 features[field][] = node-review-field_review_criteria
 features[field][] = node-review-field_review_rating
