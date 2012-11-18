@@ -74,9 +74,16 @@ Components CSS
 .business {}
 
 
+<<<<<<< HEAD
 .menu { font-size: 1.2em;
 
 
+=======
+.menu { font-size: 1.5em;  
+	width: 70%;
+	margin: 0 auto; 
+	 
+>>>>>>> phase4-Dillon
  }
 
 .button {}
