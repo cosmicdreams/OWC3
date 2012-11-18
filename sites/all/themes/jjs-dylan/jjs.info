@@ -1,13 +1,17 @@
-name = JJ's List
+name = JJs
 description = A custom theme created for <a href="http://www.jjslist.com/">JJ's list</a> by volunteers of the <a href="http://chi2012.overnightwebsitechallenge.com/teams/90">Drupal Rocks team of the 2012 Overnight Website Challenge</a>.
 core = 7.x
 engine = phptemplate
 screenshot = screenshot.png
 base theme = omega
 
+
+
+
 ; PANELS
 
 plugins[panels][layouts] = panels
+
 
 ; REQUIRED CORE REGIONS
 
@@ -16,6 +20,9 @@ regions[page_bottom] = Page Bottom
 regions[content] = Content
 
 ; ADDITIONAL REGIONS
+
+regions[user_first] = User Bar First
+regions[user_second] = User Bar Second
 
 regions[branding] = Branding
 regions[menu] = Menu

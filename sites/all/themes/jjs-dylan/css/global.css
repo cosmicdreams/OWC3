@@ -10,22 +10,17 @@ Base CSS
 ***************************************************************************************************************/
 
 
-body { 
-	font-size: 18px;
+body { font-size: 18px;
 	line-height: 1.4em;
 	word-spacing: 0.125em;
 	font-family: Cabin, Verdana, Geneva, sans-serif;
+
 }
 
-h1,
-h2,
-h3,
-h4,
-h5, 
-.menu { 
-	line-height: 1.25em;
+h1,h2,h3,
+h4,h5, .menu { line-height: 1.25em;
 	letter-spacing: .045em;
-	font-family: "Yanone Kaffeesatz", "Lucida Grande", Helvetica, Arial;
+	font-family: "Yanone Kaffeesatz", ""Lucida Grande"", Helvetica, Arial;
 }
 
 h1 { font-size: 2em; }
@@ -51,17 +46,34 @@ a: focus, a:hover, a:active { text-decoration: underline; }
 	list-style-image: none;
 }
 
+form {}
+
+
+
+
+
+
 /****************************************************************************************************************
 
 Components CSS
 
 ***************************************************************************************************************/
 
-.menu { 
-	font-size: 1.5em;  
+.review {}
+
+.profile {}
+
+.person {}
+
+.business {}
+
+.menu { font-size: 1.5em;  
 	width: 70%;
-	margin: 0 auto;  
+	margin: 0 auto; 
+	 
  }
+
+.button {}
 
 #section-header {
 	height: 152px;
@@ -73,7 +85,7 @@ Components CSS
 	background-color: #eee;
 }
 
-#zone-branding-wrapper {
+#zone-header {
 	height: 152px;
 	background: url('../images/header_background.png') no-repeat 52% 0;
 }
@@ -86,27 +98,24 @@ Layout CSS
 
 ***************************************************************************************************************/
 
+.sidebar {}
+
 .menu li { float: left;
 	margin-right: 40px;
 }
+.menu li:last-child { margin-left: 80px; }
 
-.menu li:last-child { 
-	margin-left: 80px;
-}
 
-form#search-block-form { 
-	width: 30%;
+
+form#search-block-form { width: 30%;
 	margin: 20px auto;
-}
 
-form#search-block-form input { 
-	width: 100%;
-	margin: 5px auto;
 }
+form#search-block-form  input { width: 100%; margin: 5px auto; }
 
 
 /** Footer **/
-	#region-footer .block {
-	float: left;
+#region-footer .block {
+  float: left;
 }
 
