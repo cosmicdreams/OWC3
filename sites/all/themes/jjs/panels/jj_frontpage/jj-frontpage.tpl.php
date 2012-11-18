@@ -1,25 +1,15 @@
-<?php if (! empty($content['header'])): ?>
-<div class="jj-header">
-  <?php print $content['header']; ?>
+<div class="jj-header-left">
+  <?php print $content['header_left']; ?>
 </div>
-<?php endif; ?>
+<div class="jj-header-right">
+  <?php print $content['header_right']; ?>
+</div>
 
 <div class="jj-wrap">
-  <?php if (! empty($content['left'])): ?>
-  <div class="jj-left">
-    <?php print $content['left']; ?>
+  <div class="jj-blog">
+    <?php print $content['blog']; ?>
   </div>
-  <?php endif; ?>
-
-  <?php if (! empty($content['right'])): ?>
-  <div class="jj-right">
-    <?php print $content['right']; ?>
+  <div class="jj-reviews">
+    <?php print $content['reviews']; ?>
   </div>
-  <?php endif; ?>
 </div>
-
-<?php if (! empty($content['footer'])): ?>
-<div class="jj-footer">
-  <?php print $content['footer']; ?>
-</div>
-<?php endif; ?>

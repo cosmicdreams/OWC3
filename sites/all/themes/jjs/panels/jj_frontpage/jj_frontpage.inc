@@ -9,9 +9,9 @@ $plugin = array(
   'admin theme' => 'jj_frontpage_admin',
   'admin css'   => 'jj_frontpage.css',
   'regions'     => array(
-    'header'  => t('Header Region'),
-    'footer' => t('Footer Region'),
-    'left' => t('Left Sidebar'),
-    'right' => t('Right Sidebar'),
+    'header_left'  => t('Header Left'),
+    'header_right' => t('Header Right'),
+    'blog' => t('Recent Blog Articles'),
+    'reviews' => t('Latest Reviews'),
   ),
 );
