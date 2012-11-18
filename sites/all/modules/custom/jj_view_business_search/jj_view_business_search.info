@@ -1,4 +1,4 @@
-name = Business Search
+name = JJ : View : Business Search
 description = A View of Businesses with exposed filters.
 core = 7.x
 package = JJs List
