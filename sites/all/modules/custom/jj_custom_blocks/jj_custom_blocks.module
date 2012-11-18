@@ -10,6 +10,10 @@
  */
 function jj_custom_blocks_block_info() {
   return array(
+    'goroo_trip_planner' => array(
+      'info' => t('Goroo Get Directions'),
+      'cache' => DRUPAL_CACHE_PER_ROLE,
+    ),
     'newsletter_signup' => array(
       'info' => t('Newsletter Signup'),
       'cache' => DRUPAL_NO_CACHE,
