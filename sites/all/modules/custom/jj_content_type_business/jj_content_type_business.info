@@ -14,7 +14,11 @@ dependencies[] = geofield
 dependencies[] = image
 dependencies[] = link
 dependencies[] = list
+<<<<<<< HEAD
 dependencies[] = number
+=======
+dependencies[] = media
+>>>>>>> phase5-cweber
 dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = taxonomy
@@ -34,6 +38,7 @@ features[field][] = node-business-field_business_non_profit
 features[field][] = node-business-field_business_other
 features[field][] = node-business-field_business_phone
 features[field][] = node-business-field_business_types
+features[field][] = node-business-field_business_video
 features[field][] = node-business-field_business_weblink
 features[field][] = node-business-field_mighty_site_id
 features[formatters][] = custom_google_static_map
