@@ -70,7 +70,20 @@ Components CSS
 
 .button {}
 
-.section-header { background: url('../images/header_background.png') no-repeat 52% 0; }
+#section-header {
+	height: 152px;
+	background: url('../images/page_bkgd.png') repeat-x;
+}
+
+#section-footer {
+	height: 200px;
+	background-color: #eee;
+}
+
+#zone-header {
+	height: 152px;
+	background: url('../images/header_background.png') no-repeat 52% 0;
+}
 
 .section-footer { background-color: #eeeeee ; }
 
@@ -99,7 +112,9 @@ form#search-block-form { width: 30%;
 }
 form#search-block-form  input { width: 100%; margin: 5px auto; }
 
+
 /** Footer **/
 #region-footer .block {
   float: left;
 }
+

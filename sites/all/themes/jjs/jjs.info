@@ -1,5 +1,5 @@
 name = JJs
-description = Theme for JJ's list
+description = A custom theme created for <a href="http://www.jjslist.com/">JJ's list</a> by volunteers of the <a href="http://chi2012.overnightwebsitechallenge.com/teams/90">Drupal Rocks team of the 2012 Overnight Website Challenge</a>.
 core = 7.x
 engine = phptemplate
 screenshot = screenshot.png
