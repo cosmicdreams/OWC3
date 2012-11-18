@@ -38,3 +38,12 @@ a: focus, a:hover, a:active { text-decoration: underline; }
 	overflow: hidden;
 }
 
+#section-header {
+	height: 152px;
+	background-color: #eee;
+}
+
+#section-footer {
+	height: 200px;
+	background-color: #eee;
+}
