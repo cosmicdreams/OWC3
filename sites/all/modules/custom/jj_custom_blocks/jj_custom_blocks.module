@@ -18,6 +18,10 @@ function jj_custom_blocks_block_info() {
       'info' => t('Newsletter Signup'),
       'cache' => DRUPAL_NO_CACHE,
     ),
+    'omnibox' => array(
+      'info' => t('Omnibox search'),
+      'cache' => DRUPAL_NO_CACHE,
+    ),
   );
 }
 
