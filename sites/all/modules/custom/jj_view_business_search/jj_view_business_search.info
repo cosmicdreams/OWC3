@@ -1,0 +1,11 @@
+name = Business Search
+description = A View of Businesses with exposed filters.
+core = 7.x
+package = JJs List
+version = 7.x-0.1
+project = jj_view_business_search
+dependencies[] = ctools
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:1
+features[views_view][] = business_search

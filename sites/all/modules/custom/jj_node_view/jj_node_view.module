@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the jj_node_view feature.
+ */
+
+include_once 'jj_node_view.features.inc';

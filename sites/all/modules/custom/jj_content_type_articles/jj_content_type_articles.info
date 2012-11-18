@@ -1,10 +1,10 @@
-name = JJSList Business Articles
+name = JJ : Content Type : Articles
 description = Allows articles to be contected to a business.
 core = 7.x
-package = JJ
+package = JJs List
 php = 5.2.4
 version = 7.x-1.0
-project = jj_business_articles
+project = jj_content_type_articles
 dependencies[] = ctools
 dependencies[] = entityreference
 dependencies[] = features
