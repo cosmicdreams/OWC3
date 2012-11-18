@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Review Importer feature.
+ */
+
+include_once 'jj_feeds_importer_review.features.inc';
