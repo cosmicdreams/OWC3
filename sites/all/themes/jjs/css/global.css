@@ -38,12 +38,10 @@ a { color: #EE492D;
 	text-decoration: none;
 }
 
-a: focus, a:hover, a:active { text-decoration: underline; }
-
-:active, :hover { outline: 0;}
-
-:focus { outline: medium dotted;
-	overflow: hidden;
+a: focus, 
+a:hover, 
+a:active { 
+	text-decoration: underline;
 }
 
 .menu .leaf {
