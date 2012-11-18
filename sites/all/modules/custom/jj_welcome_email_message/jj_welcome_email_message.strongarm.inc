@@ -14,56 +14,70 @@ function jj_welcome_email_message_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_admin_created_body';
-  $strongarm->value = '[user:name],
+  $strongarm->value = 'Thank you for joining our vibrant community at jjslist.com, where people with disabilities and businesses connect! Here are a few things you can explore next:
 
-A site administrator at [site:name] has created an account for you. You may now log in by clicking this link or copying and pasting it to your browser:
+    To find a disability-aware business near you, visit our Directory.
+    To share your thoughts on the disability awareness of a business, write a review.
 
-[user:one-time-login-url]
+Are you a business owner?
 
-This link can only be used once to log in and will lead you to a page where you can set your password.
+    Search for your business (link) and claim it now to unlock the ability to manage your page.
+    Learn about our Disability Awareness Training for Businesses.
 
-After setting your password, you will be able to log in at [site:login-url] in the future using:
+Are you an educator or agency staff?
 
-username: [user:name]
-password: Your password
+    Learn about our Safe and Productive Internet Life & Literacy Skills (SPILLS) Curriculum.
 
-jonkamke
+Questions? We’re happy to help. Contact us at info@jjslist.com or (847) 869-0000.
 
---  [site:name] team';
+Thanks again! Together, we can build a community that’s truly inclusive.
+
+Sincerely,
+The JJ’s List Team
+www.facebook.com/JJsList
+www.twitter.com/JJsList';
   $export['user_mail_register_admin_created_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_admin_created_subject';
-  $strongarm->value = 'An administrator created an account for you at [site:name]';
+  $strongarm->value = 'New User Profile Signup - Thank You';
   $export['user_mail_register_admin_created_subject'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_body';
-  $strongarm->value = '[user:name],
+  $strongarm->value = 'Thank you for joining our vibrant community at jjslist.com, where people with disabilities and businesses connect! Here are a few things you can explore next:
 
-Thank you for registering at [site:name]. You may now log in by clicking this link or copying and pasting it to your browser:
+    To find a disability-aware business near you, visit our Directory.
+    To share your thoughts on the disability awareness of a business, write a review.
 
-[user:one-time-login-url]
+Are you a business owner?
 
-This link can only be used once to log in and will lead you to a page where you can set your password.
+    Search for your business (link) and claim it now to unlock the ability to manage your page.
+    Learn about our Disability Awareness Training for Businesses.
 
-After setting your password, you will be able to log in at [site:login-url] in the future using:
+Are you an educator or agency staff?
 
-username: [user:name]
-password: Your password
+    Learn about our Safe and Productive Internet Life & Literacy Skills (SPILLS) Curriculum.
 
---  [site:name] team';
+Questions? We’re happy to help. Contact us at info@jjslist.com or (847) 869-0000.
+
+Thanks again! Together, we can build a community that’s truly inclusive.
+
+Sincerely,
+The JJ’s List Team
+www.facebook.com/JJsList
+www.twitter.com/JJsList';
   $export['user_mail_register_no_approval_required_body'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_register_no_approval_required_subject';
-  $strongarm->value = 'Account details for [user:name] at [site:name]';
+  $strongarm->value = 'New User Profile Signup - Thank You';
   $export['user_mail_register_no_approval_required_subject'] = $strongarm;
 
   return $export;

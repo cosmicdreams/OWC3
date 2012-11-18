@@ -2,6 +2,7 @@ name = JJ Welcome Email Message
 description = Email message sent to a user when an account is created.
 core = 7.x
 package = JJs List
+php = 5.2.4
 version = 7.x-1.0
 project = jj_welcome_email_message
 dependencies[] = ctools
