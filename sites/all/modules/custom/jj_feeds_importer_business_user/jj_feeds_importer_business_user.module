@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Business User Importer feature.
+ */
+
+include_once 'jj_feeds_importer_business_user.features.inc';

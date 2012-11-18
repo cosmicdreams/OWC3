@@ -1,0 +1,13 @@
+name = Business User Importer
+description = Import Business Users
+core = 7.x
+package = JJs List
+version = 7.x-0.1
+project = jj_feeds_importer_business_user
+dependencies[] = features
+dependencies[] = feeds
+dependencies[] = jj_user_profile
+features[ctools][] = feeds:feeds_importer_default:1
+features[features_api][] = api:1
+features[feeds_importer][] = business_user_importer
+features[user_role][] = business owner
