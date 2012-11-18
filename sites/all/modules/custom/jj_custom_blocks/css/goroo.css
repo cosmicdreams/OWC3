@@ -1,0 +1,151 @@
+#tpmenu {
+    border-bottom: 5px solid #D9591C;
+    font-family: arial narrow,helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: bolder;
+    height: 18px;
+    line-height: 14px;
+    width: 100%;
+}
+div.topmenu {
+    background: none repeat scroll 0 0 #F26522;
+    color: #FFFFFF;
+    float: left;
+    padding: 2px;
+}
+div.topmenu a {
+    color: #FFFFFF;
+    font-weight: bolder;
+    text-decoration: none;
+}
+div.topmenualert {
+    background: none repeat scroll 0 0 #D20200;
+    color: #FFFFFF;
+    float: left;
+    font-weight: bolder;
+    padding: 2px;
+}
+div.offmenu {
+    background: none repeat scroll 0 0 #C3C2C2;
+    float: left;
+    padding: 2px;
+}
+div.offmenu a {
+    color: #000000;
+    font-weight: bolder;
+    text-decoration: none;
+}
+div.tponleft {
+    float: left;
+    height: 18px;
+    overflow: hidden;
+}
+div.tponright {
+    float: left;
+    height: 18px;
+    overflow: hidden;
+    padding-right: 8px;
+}
+div.tpleft {
+    float: left;
+}
+div.tpright {
+    float: left;
+    padding-right: 8px;
+}
+div.tpbox {
+    background: none repeat scroll 0 0 #DADADA;
+    border-bottom: 1px solid #B9B9B9;
+    border-left: 1px solid #B9B9B9;
+    border-right: 1px solid #B9B9B9;
+    float: left;
+    margin: 0;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 212px;
+}
+div.tpbox2 {
+    background: none repeat scroll 0 0 #EDEDED;
+    border-bottom: 1px solid #B9B9B9;
+    border-left: 1px solid #B9B9B9;
+    border-right: 1px solid #B9B9B9;
+    float: left;
+    margin: 0;
+    padding-bottom: 10px;
+    padding-left: 8px;
+    padding-top: 10px;
+    width: 214px;
+}
+div.tpbox div.tpboxinput input {
+    margin-right: 3px;
+}
+div.tppad {
+    font-family: arial,helvetica,sans-serif;
+    font-size: 11px;
+}
+div.tppad input {
+    border: 1px solid #5D4617;
+    font-family: arial,sans-serif;
+    font-size: 10px;
+    padding: 2px;
+}
+html body div div#container div#full_content div#detail_right div#tripplannerhs.hide form#tripPlan div.tppad div.tpbox div.tpboxinput input#origAddress, html body div div#container div#full_content div#detail_right div#tripplannerhs.hide form#tripPlan div.tppad div.tpbox div.tpboxinput input#destAddress {
+    width: 195px !important;
+}
+div.tpboxtitle {
+    float: left;
+    font-weight: bolder;
+    padding-top: 3px;
+}
+div.tpboxtitlemode {
+    float: left;
+    font-weight: bolder;
+    width: 15%;
+}
+div.tpboxinput {
+    float: left;
+    font-size: 12px;
+}
+div.tpboxinputcaption {
+    text-align: left;
+}
+div.tpboxinputdatetime {
+    float: left;
+    padding-bottom: 6px;
+}
+div.tpboxinputdatetime select {
+    font-size: 10px;
+}
+div.tpboxinput select {
+    font-size: 10px;
+}
+div.tpboxinputdatetime2 {
+    float: left;
+    padding-bottom: 6px;
+}
+div.tpline {
+    width: 100%;
+}
+div.tpsubmitdiv {
+    float: right;
+}
+div.tpboxfinal {
+    float: left;
+    padding-bottom: 3px;
+    padding-top: 10px;
+    width: 100%;
+}
+div.hide {
+    display: block;
+}
+div.tpboxiwantto {
+}
+#tripplannerhs {
+    margin-bottom: 15px;
+    overflow: hidden;
+    width: 224px;
+}
+#arriveLeaveYes, #arriveLeaveNo {
+    margin: 0 5px;
+}
