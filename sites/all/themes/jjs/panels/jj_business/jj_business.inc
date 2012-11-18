@@ -2,7 +2,7 @@
 // Plugin definition
 $plugin = array(
   'title'       => t('Business'),
-  'icon'        => '',
+  'icon'        => '80.png',
   'category'    => t('JJ'),
   'theme'       => 'jj_business',
   'css'         => 'jj_business.css',

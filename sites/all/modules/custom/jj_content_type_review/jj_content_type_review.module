@@ -53,10 +53,16 @@ function jj_content_type_review_field_extra_fields() {
  */
 function jj_content_type_review_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'business') {
-    $votes = fivestar_get_votes('node', $node->nid);
-    if ($votes['count']['value'] >= 3) {
+    $votes = fivestar_get_votes('node', $node->nid, 'vote');
+    /* FIXME: This is a bug in votingapi.
+     *        Two different structures are loaded depending on whether we're
+     *        accessing this from views or the node itself.
+     */
+    $numVotes = isset($votes['count']['value']) ? $votes['count']['value'] : $votes['count']; 
+    $average = isset($votes['average']['value']) ? $votes['average']['value'] : $votes['average'];
+    if ($numVotes >= 3) {
       $node->content['overall_rating_percentage'] = array(
-        '#markup' => $votes['average']['value'],
+        '#markup' => $average,
       );
     }
   }

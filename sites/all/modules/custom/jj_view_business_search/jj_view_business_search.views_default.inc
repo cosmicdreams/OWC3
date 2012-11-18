@@ -32,6 +32,15 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '100';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Content: Vote results */
+  $handler->display->display_options['relationships']['votingapi_cache']['id'] = 'votingapi_cache';
+  $handler->display->display_options['relationships']['votingapi_cache']['table'] = 'node';
+  $handler->display->display_options['relationships']['votingapi_cache']['field'] = 'votingapi_cache';
+  $handler->display->display_options['relationships']['votingapi_cache']['votingapi'] = array(
+    'value_type' => 'percent',
+    'tag' => 'vote',
+    'function' => 'average',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -91,7 +100,7 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['label'] = 'Business Name';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'company';
   $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -106,7 +115,7 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['field_business_types_tid']['expose']['operator_id'] = 'field_business_types_tid_op';
   $handler->display->display_options['filters']['field_business_types_tid']['expose']['label'] = 'Business Type';
   $handler->display->display_options['filters']['field_business_types_tid']['expose']['operator'] = 'field_business_types_tid_op';
-  $handler->display->display_options['filters']['field_business_types_tid']['expose']['identifier'] = 'field_business_types_tid';
+  $handler->display->display_options['filters']['field_business_types_tid']['expose']['identifier'] = 'type';
   $handler->display->display_options['filters']['field_business_types_tid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -126,7 +135,7 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['field_business_features_tid']['expose']['operator_id'] = 'field_business_features_tid_op';
   $handler->display->display_options['filters']['field_business_features_tid']['expose']['label'] = 'Features';
   $handler->display->display_options['filters']['field_business_features_tid']['expose']['operator'] = 'field_business_features_tid_op';
-  $handler->display->display_options['filters']['field_business_features_tid']['expose']['identifier'] = 'field_business_features_tid';
+  $handler->display->display_options['filters']['field_business_features_tid']['expose']['identifier'] = 'features';
   $handler->display->display_options['filters']['field_business_features_tid']['expose']['multiple'] = TRUE;
   $handler->display->display_options['filters']['field_business_features_tid']['expose']['remember_roles'] = array(
     2 => '2',
@@ -137,6 +146,67 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['field_business_features_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_business_features_tid']['vocabulary'] = 'business_features';
   $handler->display->display_options['filters']['field_business_features_tid']['hierarchy'] = 1;
+  /* Filter criterion: Vote results: Value */
+  $handler->display->display_options['filters']['value']['id'] = 'value';
+  $handler->display->display_options['filters']['value']['table'] = 'votingapi_cache';
+  $handler->display->display_options['filters']['value']['field'] = 'value';
+  $handler->display->display_options['filters']['value']['relationship'] = 'votingapi_cache';
+  $handler->display->display_options['filters']['value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['value']['expose']['operator_id'] = 'value_op';
+  $handler->display->display_options['filters']['value']['expose']['label'] = 'Value';
+  $handler->display->display_options['filters']['value']['expose']['operator'] = 'value_op';
+  $handler->display->display_options['filters']['value']['expose']['identifier'] = 'value';
+  $handler->display->display_options['filters']['value']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['value']['group_info']['label'] = 'Rating';
+  $handler->display->display_options['filters']['value']['group_info']['identifier'] = 'rating';
+  $handler->display->display_options['filters']['value']['group_info']['widget'] = 'radios';
+  $handler->display->display_options['filters']['value']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => '1 Star & Up',
+      'operator' => '>=',
+      'value' => array(
+        'value' => '1',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+    2 => array(
+      'title' => '2 Stars & Up',
+      'operator' => '>=',
+      'value' => array(
+        'value' => '19',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+    3 => array(
+      'title' => '3 Stars & Up',
+      'operator' => '>=',
+      'value' => array(
+        'value' => '39',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+    4 => array(
+      'title' => '4 Stars & Up',
+      'operator' => '>=',
+      'value' => array(
+        'value' => '59',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+    5 => array(
+      'title' => '5 Stars',
+      'operator' => '>=',
+      'value' => array(
+        'value' => '79',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
