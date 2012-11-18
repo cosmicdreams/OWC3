@@ -33,6 +33,13 @@ regions[sidebar_second] = Sidebar Second
 
 features[] = logo
 
+
+; FONTS
+
+fonts[google_fonts_api][] = "Cabin&subset=latin#italic"
+fonts[google_fonts_api][] = "Cabin&subset=latin#regular"
+fonts[google_fonts_api][] = "Yanone Kaffeesatz&subset=latin#700"
+
 ; ZONES
 
 zones[content] = Content
