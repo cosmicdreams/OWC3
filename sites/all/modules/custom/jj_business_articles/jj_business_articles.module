@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the JJSList Business Articles feature.
- */
-
-include_once 'jj_business_articles.features.inc';
