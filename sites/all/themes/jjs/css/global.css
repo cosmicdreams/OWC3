@@ -8,16 +8,20 @@
 Base CSS
 
 ***************************************************************************************************************/
-*,html { box-sizing: borderbox; }
+
 
 body { font-size: 18px; 
 	line-height: 1.4em; 
 	word-spacing: 0.125em;
+	font-family: Cabin, Verdana, Geneva, sans-serif;
 
 }
 
-h1,h2,h3,h4,h5 { line-height: 1.25em;
+h1,h2,h3,
+h4,h5, .menu { line-height: 1.25em;
 	letter-spacing: .045em; 
+	font-family: "Yanone Kaffeesatz", ""Lucida Grande"", Helvetica, Arial;
+
 }
 
 h1 { font-size: 2em; }
@@ -65,7 +69,9 @@ Components CSS
 .business {}
 
 
-.menu { font-size: 1.1em;  width: 100%;
+.menu { font-size: 1.2em;  
+	
+	 
  }
 
 .button {}
@@ -98,6 +104,8 @@ Layout CSS
 ***************************************************************************************************************/
 
 .sidebar {}
+
+.menu { width: 100%;}
 
 .menu li { float: left; 
 	margin-right: 40px;
