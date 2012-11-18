@@ -135,8 +135,13 @@ function jj_feeds_importer_business_feeds_importer_default() {
             'unique' => FALSE,
           ),
           19 => array(
-            'source' => 'mapnewid',
-            'target' => 'uid',
+            'source' => 'created',
+            'target' => 'created',
+            'unique' => FALSE,
+          ),
+          20 => array(
+            'source' => 'hidden',
+            'target' => 'status',
             'unique' => FALSE,
           ),
         ),
