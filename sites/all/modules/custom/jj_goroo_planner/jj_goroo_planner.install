@@ -9,6 +9,6 @@
  *
  * @ingroup block_example
  */
-function block_example_uninstall() {
-  variable_del('jj_goroo_planner_string');
+function jj_goroo_planner_uninstall() {
+  // variable_del('jj_goroo_planner_string');
 }
