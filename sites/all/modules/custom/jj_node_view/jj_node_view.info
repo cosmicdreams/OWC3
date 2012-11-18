@@ -1,4 +1,4 @@
-name = JJ: Panel : Node View
+name = JJ : Panel : Node View
 description = Defines the panels page for node detail pages.
 core = 7.x
 package = JJs List
