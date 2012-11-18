@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ *  Provides custom blocks to JJs List.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function jj_custom_blocks_block_info() {
+  return array(
+    'newsletter_signup' => array(
+      'info' => t('Newsletter Signup'),
+      'cache' => DRUPAL_NO_CACHE,
+    ),
+  );
+}
+
+/**
+ * Impelements hook_block_configure().
+ */
+function jj_custom_blocks_block_configure($delta, $edit = array()) {
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function jj_custom_blocks_block_save($delta, $edit = array()) {
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function jj_custom_blocks_block_view($delta) {
+  // Use to delta to load the block we want.
+  module_load_include('inc', 'jj_custom_blocks', 'jj_custom_blocks.block.' . $delta);
+  $hook = 'jj_custom_blocks_block_' . $delta . '_block_view';
+  if (function_exists($hook)) {
+    return $hook();
+  }
+}
