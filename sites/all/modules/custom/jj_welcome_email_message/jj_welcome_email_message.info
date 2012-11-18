@@ -1,0 +1,14 @@
+name = JJ Welcome Email Message
+description = Email message sent to a user when an account is created.
+core = 7.x
+package = JJs List
+version = 7.x-1.0
+project = jj_welcome_email_message
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1
+features[variable][] = user_mail_register_admin_created_body
+features[variable][] = user_mail_register_admin_created_subject
+features[variable][] = user_mail_register_no_approval_required_body
+features[variable][] = user_mail_register_no_approval_required_subject
