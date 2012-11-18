@@ -653,6 +653,9 @@ function jj_content_type_business_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_business_logo',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'fid' => array(
           'columns' => array(
@@ -732,14 +735,14 @@ function jj_content_type_business_field_default_fields() {
       'label' => 'Logo',
       'required' => 0,
       'settings' => array(
-        'alt_field' => 0,
+        'alt_field' => 1,
         'default_image' => 0,
-        'file_directory' => '',
+        'file_directory' => 'businesses/logos',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
         'max_resolution' => '',
         'min_resolution' => '',
-        'title_field' => 0,
+        'title_field' => 1,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
