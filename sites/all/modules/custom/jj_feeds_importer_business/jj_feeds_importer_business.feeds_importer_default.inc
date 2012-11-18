@@ -145,6 +145,11 @@ function jj_feeds_importer_business_feeds_importer_default() {
             'unique' => FALSE,
           ),
           21 => array(
+            'source' => 'business_type_ids',
+            'target' => 'field_mighty_site_businesstypeid',
+            'unique' => FALSE,
+          ),
+          22 => array(
             'source' => 'awareness_feature_ids',
             'target' => 'field_mighty_site_awareness_ids',
             'unique' => FALSE,
