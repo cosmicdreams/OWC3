@@ -162,7 +162,7 @@ function jj_view_business_search_views_default_views() {
   $handler->display->display_options['filters']['value']['group_info']['widget'] = 'radios';
   $handler->display->display_options['filters']['value']['group_info']['group_items'] = array(
     1 => array(
-      'title' => '1 Star',
+      'title' => '1 Star & Up',
       'operator' => '>=',
       'value' => array(
         'value' => '1',
@@ -171,7 +171,7 @@ function jj_view_business_search_views_default_views() {
       ),
     ),
     2 => array(
-      'title' => '2 Stars',
+      'title' => '2 Stars & Up',
       'operator' => '>=',
       'value' => array(
         'value' => '19',
@@ -180,7 +180,7 @@ function jj_view_business_search_views_default_views() {
       ),
     ),
     3 => array(
-      'title' => '3 Stars',
+      'title' => '3 Stars & Up',
       'operator' => '>=',
       'value' => array(
         'value' => '39',
@@ -189,7 +189,7 @@ function jj_view_business_search_views_default_views() {
       ),
     ),
     4 => array(
-      'title' => '4 Stars',
+      'title' => '4 Stars & Up',
       'operator' => '>=',
       'value' => array(
         'value' => '59',
