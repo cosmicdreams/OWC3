@@ -3,7 +3,7 @@ description = The Business Content Type
 core = 7.x
 package = JJs List
 php = 5.2.4
-version = 7.x-1.3
+version = 7.x-1.4
 project = jj_content_type_business
 dependencies[] = addressfield
 dependencies[] = custom_formatters
@@ -14,14 +14,12 @@ dependencies[] = geofield
 dependencies[] = image
 dependencies[] = link
 dependencies[] = list
-<<<<<<< HEAD
-dependencies[] = number
-=======
 dependencies[] = media
->>>>>>> phase5-cweber
-dependencies[] = options
+dependencies[] = number
 dependencies[] = strongarm
 dependencies[] = taxonomy
+dependencies[] = number
+dependencies[] = options
 features[ctools][] = custom_formatters:custom_formatters:2
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:1
@@ -40,6 +38,7 @@ features[field][] = node-business-field_business_phone
 features[field][] = node-business-field_business_types
 features[field][] = node-business-field_business_video
 features[field][] = node-business-field_business_weblink
+features[field][] = node-business-field_mighty_site_awareness_ids
 features[field][] = node-business-field_mighty_site_id
 features[formatters][] = custom_google_static_map
 features[node][] = business
