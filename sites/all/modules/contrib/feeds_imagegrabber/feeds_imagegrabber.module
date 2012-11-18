@@ -142,7 +142,7 @@ function feeds_imagegrabber_feeds_processor_targets_alter(&$targets, $entity_typ
     if (in_array($info['type'], array('image'))) {
       $targets[$name . ':fig'] = array(
         'name' => check_plain($instance['label']) . ' (FIG)',
-        'callback' => 'feeds_imagegrabber_feeds_set_target',
+        'callback' => 'feeds_imagegrabber_feeds_get_target',
         'description' => t('The @label field of the node.', array('@label' => $instance['label'])),
       );
     }
@@ -223,6 +223,101 @@ function feeds_imagegrabber_feeds_set_target($source, $entity, $target, $page_ur
     
     $image_count = 0;
     foreach ($images as $url => $size) {
+      // We don't need to pass an encoded url to feeds.
+      // Feeds will handle encoding spaces for retrieval and replacing spaces
+      // with underscores when saving to the file system.
+      $url = rawurldecode($url);
+      $enclosure = new FeedsEnclosure($url, 'application/octet-stream');
+      if (($file = $enclosure->getFile($target_dir)) && ($file = feeds_imagegrabber_is_image($file)) && !count(feeds_imagegrabber_widget_file_validator($file, $instance_info))) {
+        $field['und'][$image_count] = (array)$file;
+        $field['und'][$image_count]['display'] = 1;
+        
+        $image_count++;
+        if($image_count == $info['cardinality']) {
+          break;
+        }
+      }
+    }
+    if ($image_count) {
+      $entity->$field_name = $field;
+    }
+  }
+}
+
+/**
+ * Callback for mapping. Here is where the actual mapping happens.
+ */
+function feeds_imagegrabber_feeds_get_target($source, $entity, $target, $image_url) {
+  if (empty($image_url)) {
+    return;
+  }
+
+  $feed_nid     = $entity->feeds_item->feed_nid;
+  $settings     = feeds_imagegrabber_get_settings($feed_nid);
+
+  // Fall back to the defaults.
+  if (!$settings) {
+    $settings = feeds_imagegrabber_get_default_settings();
+  }
+  if (!$settings || !$settings['enabled']) {
+    return FALSE;
+  }
+
+  if (!feeds_imagegrabber_include_library('url_to_absolute.inc', 'feeds_imagegrabber')) {
+    watchdog('feeds_imagegrabber', 'url conversion script is missing. ', array(), WATCHDOG_ERROR, 'admin/reports/dblog/feeds_imagegrabber');
+    return FALSE;
+  }
+  
+  list($field_name) = explode(':', $target);
+  
+  list($entity_id, $vid, $bundle_name) = entity_extract_ids($entity->feeds_item->entity_type, $entity);
+  $instance_info = field_info_instance($entity->feeds_item->entity_type, $field_name, $bundle_name);
+  $info = field_info_field($field_name);
+  
+  $max_filesize = parse_size(file_upload_max_size());
+  if (!empty($instance_info['settings']['max_filesize']) && parse_size($instance_info['settings']['max_filesize']) < $max_filesize) {
+    $max_filesize = parse_size($instance_info['settings']['max_filesize']);
+  }
+  
+  $max_exec_time = ini_get('max_execution_time');
+  $timeout = $max_exec_time == 0 ? 10 : ($settings['exec_time'] * $max_exec_time / 100);
+  $page_time = timer_read('page')/1000;
+  if(function_exists('encode_url')) {
+    $image_url = encode_url($image_url);
+  }
+  
+  if (valid_url($image_url)) {
+    //$xml = feeds_imagegrabber_webpage_scraper($page_url, $settings['id_class'], $settings['id_class_desc'], $timeout);
+    //if ($xml == FALSE) {
+    //  return;
+    //}
+    $timeout = $timeout - timer_read('page')/1000 + $page_time;
+  
+    $options = array(
+      'max_imagesize' => $max_filesize,
+      'timeout' => $timeout,
+      'feeling_lucky' => $settings['feeling_lucky'],
+      'cardinality' => $info['cardinality'],
+    );
+
+    $images = [$image_url];
+    if ($images == FALSE || count($images) <= 0) {
+      return;
+    }
+
+    asort($images);
+    $images = array_reverse($images, TRUE);
+    
+    $data = array();
+    if (!empty($entity->uid)) {
+      $data[$entity->feeds_item->entity_type] = $entity;
+    }
+    
+    $field = isset($entity->$field_name) ? $entity->$field_name : array();
+    $target_dir = file_field_widget_uri($info, $instance_info, $data); 
+    
+    $image_count = 0;
+    foreach ($images as $size => $url) {
       // We don't need to pass an encoded url to feeds.
       // Feeds will handle encoding spaces for retrieval and replacing spaces
       // with underscores when saving to the file system.
