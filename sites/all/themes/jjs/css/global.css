@@ -54,6 +54,40 @@ a:active {
 Components CSS
 
 ***************************************************************************************************************/
+#zone-branding {
+	position: relative;
+}
+
+#region-header-search {
+	position: absolute;
+	height: 60px;
+}
+
+#region-branding {
+	position: absolute;
+	top: 26px;
+	height: 127px;
+}
+
+#region-social-icons {
+	position: absolute;
+	top: 60px;
+	right: 0px;
+	height: 44px;
+}
+
+#region-header-user-links {
+	position: absolute;
+	right: 0px;
+	top: 74px;
+	height: 30px;
+}
+
+#region-header-menu {
+	position: absolute;
+	top: 105px;
+	height: 36px;
+}
 
 .menu { 
 	font-size: 1.5em;  
