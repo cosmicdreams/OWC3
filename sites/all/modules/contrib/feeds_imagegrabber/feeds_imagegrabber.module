@@ -300,7 +300,7 @@ function feeds_imagegrabber_feeds_get_target($source, $entity, $target, $image_u
       'cardinality' => $info['cardinality'],
     );
 
-    $images = [$image_url];
+    $images = array($image_url);
     if ($images == FALSE || count($images) <= 0) {
       return;
     }
