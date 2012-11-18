@@ -10,12 +10,32 @@
 /**
  * The taxonomy vocabulary machine name for Business Types
  */
-define('BUSSINESS_TYPE_VOCABULARY', 'tags');
+define('BUSINESS_TYPE_VOCABULARY', 'business_types');
+/**
+ * The taxonomy vaocabulary machine name for Business Amenities
+ */
+define('BUSINESS_AMENITIES', 'business_features');
+/**
+ * URL for the busines type search results.
+ */
+define('BUSINESS_TYPE_SEARCH_URL', 'business-search');
+/**
+ * URL for rating search results.
+ */
+define('RATING_SEARCH_URL', 'node/1');
+/**
+ * URL for the amenity search results.
+ */
+define('AMENITY_SEARCH_URL', 'business-search');
+/**
+ * Range limit for the return results for the auto complete
+ */
+const AUTOCOMPLETE_RANGE_MAX = 10;
 
 function jj_search_blocks_menu() {
   $items['business/autocomplete/%'] = array(
     'title'            => 'Business autocomplete',
-    'page callback'    => 'jj_search_blocks_business_autocomplete',
+    'page callback'    => 'jj_search_blocks_taxonomy_autocomplete',
     'page arguments' => array(2),
     'access arguments' => array('access content'),
     'type'             => MENU_CALLBACK,
@@ -126,16 +146,17 @@ function jj_search_blocks_business_type_content() {
 function jj_search_blocks_business_type_form($form, &$form_state) {
   $form = array();
 
-  $form['business_type'] = array(
+  $form['business_types'] = array(
     '#type'              => 'textfield',
     '#title'             => t('Search by Business Type'),
     '#size'              => 20,
-    '#autocomplete_path' => 'business/autocomplete/BUSSINESS_TYPE_VOCABULARY',
+    '#autocomplete_path' => 'business/autocomplete/' . BUSINESS_TYPE_VOCABULARY,
   );
   $form['submit']        = array(
     '#type'  => 'submit',
     '#value' => t('Search'),
   );
+  $form['#action'] = url(BUSINESS_TYPE_SEARCH_URL);
 
   return $form;
 }
@@ -179,6 +200,7 @@ function jj_search_blocks_rating_form($form, &$form_state) {
     '#type'  => 'submit',
     '#value' => t('Search'),
   );
+  $form['#action'] = url(RATING_SEARCH_URL);
 
   return $form;
 }
@@ -209,12 +231,15 @@ function jj_search_blocks_amenity_form($form, &$form_state) {
 
   $form['amenity'] = array(
     '#type'  => 'textfield',
-    '#title' => t(''),
+    '#title' => t('Amenity Search'),
+    '#size' => 20,
+    '#autocomplete_path' => 'business/autocomplete/' . BUSINESS_AMENITIES,
   );
   $form['submit']  = array(
     '#type'  => 'submit',
     '#value' => t('Search'),
   );
+  $form['#action'] = url(AMENITY_SEARCH_URL);
 
   return $form;
 }
@@ -223,9 +248,9 @@ function jj_search_blocks_amenity_form($form, &$form_state) {
  * Autocomplete function
  *
  * @param string $input User input text
- * @param int $vocabulary Vocabulary id
+ * @param int $vocabulary Vocabulary machine name
  */
-function jj_search_blocks_business_autocomplete($vocabulary = 'tags', $input = '') {
+function jj_search_blocks_taxonomy_autocomplete($vocabulary = 'tags', $input = '') {
   $matches = array();
   if ($input) {
     $query = db_select('taxonomy_term_data', 'ttd');
@@ -235,7 +260,7 @@ function jj_search_blocks_business_autocomplete($vocabulary = 'tags', $input = '
       ->fields('tv', array('machine_name'))
       ->condition('tv.machine_name', $vocabulary, '=')
       ->condition('ttd.name', db_like($input) . '%', 'LIKE')
-      ->range(0, 10);
+      ->range(0, AUTOCOMPLETE_RANGE_MAX);
 
       $result = $query->execute();
 
