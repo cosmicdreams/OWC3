@@ -588,11 +588,9 @@ function jj_content_type_business_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'geofield',
-          'settings' => array(
-            'data' => 'full',
-          ),
-          'type' => 'geofield_wkt',
+          'module' => 'custom_formatters',
+          'settings' => array(),
+          'type' => 'custom_formatters_custom_google_static_map',
           'weight' => '5',
         ),
         'full' => array(
