@@ -1,0 +1,19 @@
+[class=-wrap] {width: 90%; 
+	margin: 5% auto;
+}
+
+[class*=jj-header],
+[class=jj-blog], 
+[class=jj-reviews], { float: left; }
+
+[class=jj-blog], 
+[class=jj-header-right] { width: 30%; }
+
+[class=jj-reviews], 
+[class=jj-header-left] { width: 65%; }
+
+[class=jj-blog], 
+[class=jj-header-left] { margin-right: 2%; }
+
+[class=jj-reviews], 
+[class=jj-header-right] { margin-left: 2%; }
