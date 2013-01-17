@@ -91,7 +91,7 @@ Components CSS
 
 .menu { 
 	font-size: 1.5em;  
-	width: 70%;
+	width: 100%;
 	margin: 0 auto;  
  }
 
@@ -119,11 +119,11 @@ Layout CSS
 ***************************************************************************************************************/
 
 .menu li { float: left;
-	margin-right: 40px;
+	margin: 0 0 0 0.3em; 
 }
 
 .menu li:last-child { 
-	margin-left: 80px;
+	margin-left: 1em;
 }
 
 form#search-block-form { 
