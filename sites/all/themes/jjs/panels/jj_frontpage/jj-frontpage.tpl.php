@@ -4,7 +4,7 @@
 	</div>
 	<div class="jj-header-right">
 	  <?php print $content['header_right']; ?>
-	</div>  using panels only for the content portion-->
+	</div>  using panels only for the content portion -->
 
 	<div class="jj-blog grid-4">
 	  <?php print $content['blog']; ?>
