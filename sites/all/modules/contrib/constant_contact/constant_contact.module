@@ -260,7 +260,9 @@ function constant_contact_check_login()
     $username = (isset($_GET['username'])) ? strip_tags($_GET['username']) : '';
     $password = (isset($_GET['password'])) ? strip_tags($_GET['password']) : '';
 
-    if(trim($username) != '' AND trim($password) != ''):
+    if(trim($username) != '' AND strpos($username, ' ') !== false):
+        echo "<div style='color:red;'>Usernames with a space in them are NOT supported by the constant contact API, please change your username and try again.</div>";
+    elseif(trim($username) != '' AND trim($password) != ''):
         $cc = new cc($username, $password);
 
         if(is_object($cc) && $cc->get_service_description()):
@@ -645,7 +647,7 @@ function constant_contact_user_update(&$edit, $account, $category)
 
     $cc = constant_contact_create_object();
 
-    if(!is_object($cc)):
+    if(!is_object($cc) OR !isset($edit['mail'])):
         return;
     endif;
 
@@ -777,7 +779,7 @@ function constant_contact_user_operations_unsubscribe_and_delete($accounts)
 
 	// use the API to remove these users then delete their drupal account
 	foreach($accounts as $uid):
-		$account = user_load(array('uid' => (int)$uid));
+		$account = user_load($uid);
 
 		if($account !== FALSE):
 			// Skip unsubscribing user if they are already unsubscribed.
@@ -806,7 +808,7 @@ function constant_contact_user_operations_unsubscribe($accounts)
 
 	// use the API to remove these users
 	foreach ($accounts as $uid):
-		$account = user_load(array('uid' => (int)$uid));
+		$account = user_load($uid);
 
 		// Skip unsubscribing user if they are already unsubscribed.
 		if ($account !== FALSE):
@@ -1281,7 +1283,7 @@ function constant_contact_cron()
 		$users_synced = 0;
 		// Loop users and change their local settings to unsubscribed
 		foreach($all_users as $k => $v):
-			$user = user_load(array('mail' => $v['EmailAddress']));
+			$user = user_load_by_mail($v['EmailAddress']);
 
 			if($user !== false):
 				$newfields = array('cc_newsletter_lists' => array());
@@ -1321,7 +1323,7 @@ function constant_contact_display_last_error($status_code = 0)
 		return $last_error;
 	endif;
 
-	$last_error = 'Sorry there was a problem processing your request, the error given was: ';
+	$last_error = 'Sorry there was a problem communicating with the constant contact server, the error given was: ';
 
 	switch($status_code):
 		case 400: /* Invalid Request */

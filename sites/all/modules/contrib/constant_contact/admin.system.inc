@@ -23,14 +23,10 @@ function constant_contact_intro()
 	$html .= '<p>If you do not have a constant contact account <a target="_blank" href="@cc">Signup for a free 60-day trial</a>.</p>';
 	$html .= '<p>Instructions for setting up the module can be found <a href="@instructions">here</a>.</p>';
 	$html .= '<p>If you find any problems or need help see <a href="@help">here</a>.</p>';
-	$html .= '<br /><p>The drupal module is provided by <a target="_blank" href="@me">James Benson</a>.
-	<br />If you find the module useful please consider <a target="_blank" href="@donate">donating</a> a few dollars towards future development costs.</p>';
 
 	$params = array(
 		'@instructions' => url('admin/help/constant_contact'),
 		'@help' => 'http://drupal.org/project/issues/constant_contact?categories=All',
-		'@donate' => 'http://integrationservic.es/donate.php',
-		'@me' => 'http://justphp.co.uk',
 	  	'@cc' => CC_TRIAL_URL,
 	);
 
