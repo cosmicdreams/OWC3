@@ -39,20 +39,7 @@ function jj_form_claim_your_business_default_entityform_type() {
     },
     "weight" : "0",
     "rdf_mapping" : [],
-    "paths" : {
-      "submit" : {
-        "pid" : "1",
-        "source" : "eform\\/submit\\/business-claim-form",
-        "alias" : "test-form",
-        "language" : "und"
-      },
-      "confirm" : {
-        "pid" : "2",
-        "source" : "eform\\/business-claim-form\\/confirm",
-        "alias" : "config-form",
-        "language" : "und"
-      }
-    }
+    "paths" : []
   }');
   return $items;
 }

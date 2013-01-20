@@ -2,6 +2,7 @@ name = JJ : Form : Claim Your Business
 description = The Claim Your Business form
 core = 7.x
 package = JJs List
+php = 5.2.4
 version = 7.x-1.0
 project = jj_form_claim_your_business
 dependencies[] = addressfield
