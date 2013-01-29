@@ -32,8 +32,8 @@ $state = str_replace(\' \',\'+\',$state);
 $city = str_replace(\' \',\'+\',$city);
 $dims = \'500x350\';
 
-$width = variable_get(\'custom_google_static_map_width\',\'500\');
-$height = variable_get(\'custom_google_static_map_height\',\'350\');
+$width = variable_get(\'custom_google_static_map_width\',\'300\');
+$height = variable_get(\'custom_google_static_map_height\',\'300\');
 
 $dims = $width.\'x\'.$height;
 $mapurl = \'https://maps.google.com/?q=\'.$street.\',\'.$city.\',\'.$state;
