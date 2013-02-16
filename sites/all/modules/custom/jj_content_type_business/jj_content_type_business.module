@@ -5,3 +5,52 @@
  */
 
 include_once 'jj_content_type_business.features.inc';
+
+/**
+ * Implementation of hook_field_extra_fields().
+ */
+function jj_content_type_business_field_extra_fields() {
+
+  $extra = array();
+
+  $extra['node']['business'] =  array(
+    'form' => array(),
+    'display' => array(
+      'jj_reviews_overall_rating' => array(
+        'label' => t('Overall Rating'),
+        'description' => t('Rating, as calculated from Reviews'),
+        'weight' => 0,
+      )
+    ),
+  );
+
+  return $extra;
+
+}
+
+/**
+ * Implementation of hook_node_view().
+ */
+function jj_content_type_business_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'business') {
+    $votes = fivestar_get_votes('node', $node->nid, 'vote');
+    $numVotes = isset($votes['count']['value']) ? $votes['count']['value'] : $votes['count']; 
+    $average = isset($votes['average']['value']) ? $votes['average']['value'] : $votes['average'];
+    if ($numVotes >= 3) {
+      $node->content['overall_rating_percentage'] = array(
+        '#markup' => $average,
+      );
+    }
+  }
+}
+
+/**
+ * Implementation of hook_comment_view_alter();
+ */
+function jj_content_type_business_comment_view_alter(&$build) {
+  if ($build['#node']
+   && $build['#node']->type == 'business'
+  ) {
+    unset($build['links']['comment']['#links']['comment-reply']);
+  }
+}

@@ -9,7 +9,6 @@ dependencies[] = ctools
 dependencies[] = jj_content_type_articles
 dependencies[] = jj_content_type_business
 dependencies[] = jj_content_type_resource
-dependencies[] = jj_content_type_review
 dependencies[] = page_manager
 dependencies[] = panels
 dependencies[] = strongarm

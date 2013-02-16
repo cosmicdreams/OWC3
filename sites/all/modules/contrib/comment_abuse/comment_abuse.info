@@ -1,0 +1,15 @@
+name = Comment abuse
+description = "This module provides control and sending complaints to the comments."
+dependencies[] = ctools
+core = 7.x
+
+configure = admin/config/content/comment-abuse/options
+; Handlers
+files[] = handlers/CommentAbuseHandlerFieldUserIp.inc
+
+; Information added by drupal.org packaging script on 2012-11-10
+version = "7.x-2.2"
+core = "7.x"
+project = "comment_abuse"
+datestamp = "1352541956"
+
